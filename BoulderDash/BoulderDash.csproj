@@ -43,11 +43,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Controller\Game.cs" />
+    <Compile Include="Controller\LevelData.cs" />
+    <Compile Include="Controller\Program.cs" />
+    <Compile Include="Model\GameObjects\Boulder.cs" />
+    <Compile Include="Model\GameObjects\Diamond.cs" />
+    <Compile Include="Model\GameObjects\Empty.cs" />
+    <Compile Include="Model\GameObjects\Exit.cs" />
+    <Compile Include="Model\GameObjects\Explosive.cs" />
+    <Compile Include="Model\GameObjects\Firefly.cs" />
+    <Compile Include="Model\GameObject.cs" />
+    <Compile Include="Model\GameObjects\HardenedMud.cs" />
+    <Compile Include="Model\GameObjects\Mud.cs" />
+    <Compile Include="Model\GameObjects\Rockford.cs" />
+    <Compile Include="Model\GameObjects\SteelWall.cs" />
+    <Compile Include="Model\GameObjects\Wall.cs" />
+    <Compile Include="Model\Tile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\InputView.cs" />
+    <Compile Include="View\OutputView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

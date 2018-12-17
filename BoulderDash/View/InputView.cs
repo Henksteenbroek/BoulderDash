@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BoulderDash
+namespace BoulderDash.View
 {
-    class Program
+    public class InputView
     {
-        static void Main(string[] args)
-        {
-        }
+
     }
 }
