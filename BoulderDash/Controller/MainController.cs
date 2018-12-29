@@ -55,16 +55,16 @@ namespace BoulderDash.Controller
                     switch (chars[y, x])
                     {
                         case 'R':
-                            tiles[y, x] = new Tile(new Empty(new Rockford()));
+                            tiles[y, x] = new Tile(new Empty(new Rockford(tiles[y,x])));
                             break;
                         case 'M':
                             tiles[y, x] = new Tile(new Mud(null));
                             break;
                         case 'B':
-                            tiles[y, x] = new Tile(new Empty(new Boulder()));
+                            tiles[y, x] = new Tile(new Empty(new Boulder(null)));
                             break;
                         case 'D':
-                            tiles[y, x] = new Tile(new Empty(new Diamond()));
+                            tiles[y, x] = new Tile(new Empty(new Diamond(tiles[y, x])));
                             break;
                         case 'W':
                             tiles[y, x] = new Tile(new Wall(null));
@@ -73,16 +73,16 @@ namespace BoulderDash.Controller
                             tiles[y, x] = new Tile(new SteelWall(null));
                             break;
                         case 'F':
-                            tiles[y, x] = new Tile(new Empty(new Firefly()));
+                            tiles[y, x] = new Tile(new Empty(new Firefly(tiles[y, x])));
                             break;
                         case 'E':
                             tiles[y, x] = new Tile(new Exit(null));
                             break;
                         case 'H':
-                            tiles[y, x] = new Tile(new Empty(new HardenedMud()));
+                            tiles[y, x] = new Tile(new Empty(new HardenedMud(tiles[y, x])));
                             break;
                         case 'T':
-                            tiles[y, x] = new Tile(new Empty(new Explosive()));
+                            tiles[y, x] = new Tile(new Empty(new Explosive(tiles[y, x])));
                             break;
                         case ' ':
                             tiles[y, x] = new Tile(new Empty(null));

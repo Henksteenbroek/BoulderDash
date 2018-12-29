@@ -8,9 +8,10 @@ namespace BoulderDash.Model.MoveableObjects
 {
     public class Boulder : MoveableObject
     {
-        public Boulder()
+        public Boulder(Tile location) : base(location)
         {
             DrawChar = 'B';
+            Location = location;
         }
 
         public override void move(int direction)

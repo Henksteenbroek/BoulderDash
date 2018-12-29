@@ -8,9 +8,10 @@ namespace BoulderDash.Model.MoveableObjects
 {
     public class Rockford : MoveableObject
     {
-        public Rockford()
+        public Rockford(Tile location) : base(location)
         {
             DrawChar = 'R';
+            Location = location;
         }
 
         public override void move(int direction)

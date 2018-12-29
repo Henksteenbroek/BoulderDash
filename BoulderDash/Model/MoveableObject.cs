@@ -9,10 +9,14 @@ namespace BoulderDash.Model
 {
     public abstract class MoveableObject
     {
-        Tile Location { get; set; }
-        bool IsRound { get; set; }
-
+        public Tile Location { get; set; }
+        public bool IsRound { get; set; }
         public char DrawChar { get; set; }
+
+        public MoveableObject(Tile location)
+        {
+            Location = location;
+        }
 
         public virtual void move(int direction)
         {
