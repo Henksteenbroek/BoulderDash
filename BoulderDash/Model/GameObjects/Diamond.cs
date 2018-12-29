@@ -14,5 +14,10 @@ namespace BoulderDash.Model.GameObjects
             get { return drawChar; }
             set { drawChar = value; }
         }
+
+        public void move(int direction)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
