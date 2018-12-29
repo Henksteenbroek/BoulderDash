@@ -1,5 +1,6 @@
-﻿using BoulderDash.Model;
-using BoulderDash.Model.GameObjects;
+﻿using BoulderDash.Model.MoveableObjects;
+using BoulderDash.Model.StaticObjects;
+using BoulderDash.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,37 +33,37 @@ namespace BoulderDash.Controller
                     switch (chars[y,x])
                     {
                         case 'R':
-                            tiles[y, x] = new Tile(new Rockford());
+                            tiles[y, x] = new Tile(new Empty(new Rockford()));
                             break;
                         case 'M':
-                            tiles[y, x] = new Tile(new Mud());
+                            tiles[y, x] = new Tile(new Mud(null));
                             break;
                         case 'B':
-                            tiles[y, x] = new Tile(new Boulder());
+                            tiles[y, x] = new Tile(new Empty(new Boulder()));
                             break;
                         case 'D':
-                            tiles[y, x] = new Tile(new Diamond());
+                            tiles[y, x] = new Tile(new Empty(new Diamond()));
                             break;
                         case 'W':
-                            tiles[y, x] = new Tile(new Wall());
+                            tiles[y, x] = new Tile(new Wall(null));
                             break;
                         case 'S':
-                            tiles[y, x] = new Tile(new SteelWall());
+                            tiles[y, x] = new Tile(new SteelWall(null));
                             break;
                         case 'F':
-                            tiles[y, x] = new Tile(new Firefly());
+                            tiles[y, x] = new Tile(new Empty(new Firefly()));
                             break;
                         case 'E':
-                            tiles[y, x] = new Tile(new Exit());
+                            tiles[y, x] = new Tile(new Exit(null));
                             break;
                         case 'H':
-                            tiles[y, x] = new Tile(new HardenedMud());
+                            tiles[y, x] = new Tile(new Empty(new HardenedMud()));
                             break;
                         case 'T':
-                            tiles[y, x] = new Tile(new Explosive());
+                            tiles[y, x] = new Tile(new Empty(new Explosive()));
                             break;
                         case ' ':
-                            tiles[y, x] = new Tile(new Empty());
+                            tiles[y, x] = new Tile(new Empty(null));
                             break;
                         default:
                             Console.WriteLine("Unknown tile at y: " + y + " x: " + x);

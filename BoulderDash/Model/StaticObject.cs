@@ -9,5 +9,6 @@ namespace BoulderDash.Model
     public interface StaticObject
     {
         MoveableObject moveableObject { get; set; }
+        char DrawChar { get; set; }
     }
 }

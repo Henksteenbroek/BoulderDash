@@ -24,7 +24,7 @@ namespace BoulderDash.View
             {
                 if (temp1 != null)
                 {
-                    Console.Write(temp1.GameObject.DrawChar);
+                    Console.Write(temp1.StaticObject.DrawChar);
                     temp1 = temp1.Right;
                 }
                 else if (temp2.Down != null)
@@ -34,7 +34,7 @@ namespace BoulderDash.View
                     Console.WriteLine();
                 }
             }
-            Console.WriteLine(game.Last.GameObject.DrawChar);
+            Console.WriteLine(game.Last.StaticObject.DrawChar);
         }
     }
 }
