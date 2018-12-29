@@ -12,13 +12,7 @@ namespace BoulderDash
     {
         static void Main(string[] args)
         {
-            Game game = new Game();
-            OutputView outputView = new OutputView();
-
-            game.ReadLevel(1);
-            outputView.printLevel(game);
-
-            Console.ReadLine();
+            new MainController();
         }
     }
 }

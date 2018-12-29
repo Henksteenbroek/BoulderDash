@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Controller\Game.cs" />
     <Compile Include="Controller\LevelData.cs" />
+    <Compile Include="Controller\MainController.cs" />
     <Compile Include="Controller\Program.cs" />
     <Compile Include="Model\GameObjects\Boulder.cs" />
     <Compile Include="Model\GameObjects\Diamond.cs" />

@@ -10,8 +10,13 @@ namespace BoulderDash.View
 {
     public class OutputView
     {
-        public void printLevel(Game game)
+
+        public void printLevel(Game game, int LevelLength)
         {
+            Console.Clear();
+
+            Console.WriteLine("Time left: " + LevelLength);
+
             Tile temp1 = game.First;
             Tile temp2 = game.First;
 
