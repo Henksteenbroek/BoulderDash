@@ -8,7 +8,10 @@ namespace BoulderDash.Model.MoveableObjects
 {
     public class Diamond : MoveableObject
     {
-        public char drawChar = 'D';
+        public Diamond()
+        {
+            DrawChar = 'D';
+        }
 
         public override void move(int direction)
         {

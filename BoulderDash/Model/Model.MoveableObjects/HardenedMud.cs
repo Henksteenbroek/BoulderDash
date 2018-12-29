@@ -8,8 +8,11 @@ namespace BoulderDash.Model.MoveableObjects
 {
     public class HardenedMud : MoveableObject
     {
-        public char drawChar = 'H';
-        
+        public HardenedMud()
+        {
+            DrawChar = 'H';
+        }
+
         public override void move(int direction)
         {
             throw new NotImplementedException();

@@ -8,7 +8,10 @@ namespace BoulderDash.Model.MoveableObjects
 {
     public class Firefly : MoveableObject
     {
-        public char drawChar = 'F';
+        public Firefly()
+        {
+            DrawChar = 'F';
+        }
 
         public override void move(int direction)
         {
