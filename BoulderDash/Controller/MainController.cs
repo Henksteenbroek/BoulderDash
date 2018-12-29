@@ -61,7 +61,7 @@ namespace BoulderDash.Controller
                             tiles[y, x] = new Tile(new Mud(null));
                             break;
                         case 'B':
-                            tiles[y, x] = new Tile(new Empty(new Boulder(null)));
+                            tiles[y, x] = new Tile(new Empty(new Boulder(tiles[y, x])));
                             break;
                         case 'D':
                             tiles[y, x] = new Tile(new Empty(new Diamond(tiles[y, x])));
