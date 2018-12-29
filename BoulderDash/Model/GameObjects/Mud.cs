@@ -8,7 +8,7 @@ namespace BoulderDash.Model.GameObjects
 {
     public class Mud : GameObject
     {
-        public char drawChar = 'M';
+        public char drawChar = '.';
         public char DrawChar
         {
             get { return drawChar; }

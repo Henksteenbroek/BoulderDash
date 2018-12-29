@@ -9,5 +9,6 @@ namespace BoulderDash.Model.GameObjects
     public interface GameObject
     {
         char DrawChar { get; set; }
+        void move(int direction);
     }
 }
