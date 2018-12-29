@@ -17,6 +17,8 @@ namespace BoulderDash.Model.MoveableObjects
             set { drawChar = value; }
         }
 
+        public Tile Location { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
         public void move(int direction)
         {
             throw new NotImplementedException();
