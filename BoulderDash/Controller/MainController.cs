@@ -20,17 +20,30 @@ namespace BoulderDash.Controller
         LevelData levelData;
 
         private OutputView outputView;
+        private InputView inputView;
         Game game;
 
         public MainController()
         {
             outputView = new OutputView();
+            inputView = new InputView();
             levelData = new LevelData();
             game = new Game();
             ReadLevel(1);
-
+            
             thread = new Thread(CountDown);
             thread.Start();
+
+            MoveRockFord();
+        }
+
+        private void MoveRockFord()
+        {
+            while (LevelLength > 0)
+            {
+                game.rockford.move(inputView.readInput());
+                outputView.printLevel(game, LevelLength);
+            }
         }
 
         private void CountDown()
@@ -55,16 +68,20 @@ namespace BoulderDash.Controller
                     switch (chars[y, x])
                     {
                         case 'R':
-                            tiles[y, x] = new Tile(new Empty(new Rockford(tiles[y,x])));
+                            Rockford r = new Rockford(tiles[y, x], game);
+                            game.rockford = r;
+                            tiles[y, x] = new Tile(new Empty(r));
+                            tiles[y, x].StaticObject.moveableObject = game.rockford;
+                            tiles[y, x].StaticObject.moveableObject.Location = tiles[y, x];
                             break;
                         case 'M':
                             tiles[y, x] = new Tile(new Mud(null));
                             break;
                         case 'B':
-                            tiles[y, x] = new Tile(new Empty(new Boulder(null)));
+                            tiles[y, x] = new Tile(new Empty(new Boulder(null, game)));
                             break;
                         case 'D':
-                            tiles[y, x] = new Tile(new Empty(new Diamond(tiles[y, x])));
+                            tiles[y, x] = new Tile(new Empty(new Diamond(tiles[y, x], game)));
                             break;
                         case 'W':
                             tiles[y, x] = new Tile(new Wall(null));
@@ -73,16 +90,16 @@ namespace BoulderDash.Controller
                             tiles[y, x] = new Tile(new SteelWall(null));
                             break;
                         case 'F':
-                            tiles[y, x] = new Tile(new Empty(new Firefly(tiles[y, x])));
+                            tiles[y, x] = new Tile(new Empty(new Firefly(tiles[y, x], game)));
                             break;
                         case 'E':
                             tiles[y, x] = new Tile(new Exit(null));
                             break;
                         case 'H':
-                            tiles[y, x] = new Tile(new Empty(new HardenedMud(tiles[y, x])));
+                            tiles[y, x] = new Tile(new Empty(new HardenedMud(tiles[y, x], game)));
                             break;
                         case 'T':
-                            tiles[y, x] = new Tile(new Empty(new Explosive(tiles[y, x])));
+                            tiles[y, x] = new Tile(new Empty(new Explosive(tiles[y, x], game)));
                             break;
                         case ' ':
                             tiles[y, x] = new Tile(new Empty(null));

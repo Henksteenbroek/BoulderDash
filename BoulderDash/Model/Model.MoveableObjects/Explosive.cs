@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BoulderDash.Controller;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace BoulderDash.Model.MoveableObjects
 {
     public class Explosive : MoveableObject
     {
-        public Explosive(Tile location) : base(location)
+        public Explosive(Tile location, Game game) : base(location, game)
         {
             DrawChar = 'X';
             Location = location;
