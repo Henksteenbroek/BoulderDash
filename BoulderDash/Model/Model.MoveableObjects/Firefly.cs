@@ -8,8 +8,6 @@ namespace BoulderDash.Model.MoveableObjects
 {
     public class Firefly : MoveableObject
     {
-        public bool IsRound { get; set; }
-
         public char drawChar = 'F';
         public char DrawChar
         {
@@ -17,9 +15,7 @@ namespace BoulderDash.Model.MoveableObjects
             set { drawChar = value; }
         }
 
-        public Tile Location { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-        public void move(int direction)
+        public override void move(int direction)
         {
             throw new NotImplementedException();
         }

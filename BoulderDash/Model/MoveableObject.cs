@@ -7,11 +7,14 @@ using System.Threading.Tasks;
 
 namespace BoulderDash.Model
 {
-    public interface MoveableObject
+    public abstract class MoveableObject
     {
         Tile Location { get; set; }
         bool IsRound { get; set; }
         char DrawChar { get; set; }
-        void move(int direction);
+
+        public virtual void move(int direction)
+        {
+        }
     }
 }

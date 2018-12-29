@@ -8,7 +8,6 @@ namespace BoulderDash.Model.MoveableObjects
 {
     public class Diamond : MoveableObject
     {
-        public bool IsRound { get; set; }
 
         public char drawChar = 'D';
         public char DrawChar
@@ -19,7 +18,7 @@ namespace BoulderDash.Model.MoveableObjects
 
         public Tile Location { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-        public void move(int direction)
+        public override void move(int direction)
         {
             throw new NotImplementedException();
         }

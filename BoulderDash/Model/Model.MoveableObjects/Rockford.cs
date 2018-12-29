@@ -8,18 +8,14 @@ namespace BoulderDash.Model.MoveableObjects
 {
     public class Rockford : MoveableObject
     {
-        public bool IsRound { get; set; } 
-
         public char drawChar = 'R';
         public char DrawChar
         {
             get { return drawChar; }
             set { drawChar = value; }
         }
-
-        public Tile Location { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-        public void move(int direction)
+        
+        public override void move(int direction)
         {
             throw new NotImplementedException();
         }
