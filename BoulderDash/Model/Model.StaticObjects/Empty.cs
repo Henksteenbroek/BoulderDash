@@ -11,7 +11,9 @@ namespace BoulderDash.Model.StaticObjects
         public char drawChar = ' ';
         public char DrawChar
         {
-            get { if (moveableObject == null)
+            get
+            {
+                if (moveableObject == null)
                 {
                     return drawChar;
                 }
