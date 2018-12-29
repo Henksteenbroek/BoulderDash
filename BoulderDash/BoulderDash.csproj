@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controller\Game.cs" />
+    <Compile Include="Model\Game.cs" />
     <Compile Include="Controller\LevelData.cs" />
     <Compile Include="Controller\MainController.cs" />
     <Compile Include="Controller\Program.cs" />
