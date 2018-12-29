@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace BoulderDash.Model.GameObjects
 {
-    public class Mud : GameObject
+    public class Firefly : MoveableObject
     {
-        public char drawChar = '.';
+        public char drawChar = 'F';
         public char DrawChar
         {
             get { return drawChar; }

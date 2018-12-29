@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BoulderDash.Model.GameObjects
+namespace BoulderDash.Model
 {
-    public interface GameObject
+    public interface MoveableObject
     {
+        bool IsRound { get; set; }
         char DrawChar { get; set; }
         void move(int direction);
     }

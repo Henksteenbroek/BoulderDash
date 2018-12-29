@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace BoulderDash.Model.GameObjects
 {
-    public class Exit : GameObject
+    public class Explosive : MoveableObject
     {
-        public char drawChar = 'E';
+        public char drawChar = 'T';
         public char DrawChar
         {
             get { return drawChar; }

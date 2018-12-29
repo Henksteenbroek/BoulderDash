@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace BoulderDash.Model.GameObjects
 {
-    public class Diamond : GameObject
+    public class Wall : StaticObject
     {
-        public char drawChar = 'D';
+        public char drawChar = 'W';
         public char DrawChar
         {
             get { return drawChar; }
