@@ -11,7 +11,13 @@ namespace BoulderDash.Model
     {
         Tile Location { get; set; }
         bool IsRound { get; set; }
-        char DrawChar { get; set; }
+
+        public char drawChar;
+        public char DrawChar
+        {
+            get { return drawChar; }
+            set { drawChar = value; }
+        }
 
         public virtual void move(int direction)
         {
