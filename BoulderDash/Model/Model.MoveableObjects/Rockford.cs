@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BoulderDash.Model.GameObjects
+namespace BoulderDash.Model.MoveableObjects
 {
     public class Rockford : MoveableObject
     {
+        public bool IsRound { get; set; } 
+
         public char drawChar = 'R';
         public char DrawChar
         {

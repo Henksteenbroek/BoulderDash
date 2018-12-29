@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace BoulderDash.Model
 {
-    interface StaticObject
+    public interface StaticObject
     {
+        MoveableObject moveableObject { get; set; }
     }
 }

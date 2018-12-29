@@ -9,15 +9,15 @@ namespace BoulderDash.Model
 {
     public class Tile
     {
-        public GameObject GameObject { get; set; }
+        public StaticObject StaticObject { get; set; }
         public Tile Left;
         public Tile Right;
         public Tile Up;
         public Tile Down;
         
-        public Tile(GameObject gameObject)
+        public Tile(StaticObject staticObject)
         {
-            GameObject = gameObject;
+             StaticObject = staticObject;
         }
     }
 }
