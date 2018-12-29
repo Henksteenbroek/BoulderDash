@@ -9,11 +9,6 @@ namespace BoulderDash.Model.MoveableObjects
     public class HardenedMud : MoveableObject
     {
         public char drawChar = 'H';
-        public char DrawChar
-        {
-            get { return drawChar; }
-            set { drawChar = value; }
-        }
         
         public override void move(int direction)
         {

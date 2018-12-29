@@ -9,11 +9,6 @@ namespace BoulderDash.Model.MoveableObjects
     public class Rockford : MoveableObject
     {
         public char drawChar = 'R';
-        public char DrawChar
-        {
-            get { return drawChar; }
-            set { drawChar = value; }
-        }
         
         public override void move(int direction)
         {

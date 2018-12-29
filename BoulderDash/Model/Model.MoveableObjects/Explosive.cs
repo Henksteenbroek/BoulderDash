@@ -9,11 +9,6 @@ namespace BoulderDash.Model.MoveableObjects
     public class Explosive : MoveableObject
     {
         public char drawChar = 'T';
-        public char DrawChar
-        {
-            get { return drawChar; }
-            set { drawChar = value; }
-        }
 
         public override void move(int direction)
         {
