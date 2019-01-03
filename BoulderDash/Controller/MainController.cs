@@ -39,7 +39,7 @@ namespace BoulderDash.Controller
 
         private void MoveRockFord()
         {
-            while (LevelLength > 0)
+            while (LevelLength >= 0)
             {
                 game.Rockford.move(inputView.readInput());
                 outputView.printLevel(game, LevelLength);
@@ -48,7 +48,7 @@ namespace BoulderDash.Controller
 
         private void CountDown()
         {
-            while (LevelLength > 0)
+            while (LevelLength >= 0)
             {
                 outputView.printLevel(game, LevelLength);
                 Thread.Sleep(1000);
