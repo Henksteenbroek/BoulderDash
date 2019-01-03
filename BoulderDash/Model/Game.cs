@@ -14,10 +14,11 @@ namespace BoulderDash.Controller
         public Tile First { get; set; }
         public Tile Last { get; set; }
         public Rockford Rockford { get; set; }
+        public List<MoveableObject> moveableObjects;
 
         public Game()
         {
-
+            moveableObjects = new List<MoveableObject>();
         }
 
         public void MoveObject(MoveableObject moveableObject, int direction)

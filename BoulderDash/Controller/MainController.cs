@@ -39,21 +39,21 @@ namespace BoulderDash.Controller
 
         private void MoveRockFord()
         {
-            while (LevelLength > 0)
-            {
-                game.Rockford.move(inputView.readInput());
-                outputView.printLevel(game, LevelLength);
-            }
+            //while (LevelLength > 0)
+            //{
+            //    game.Rockford.move(inputView.readInput());
+            //    outputView.printLevel(game, LevelLength);
+            //}
         }
 
         private void CountDown()
         {
-            while (LevelLength > 0)
-            {
-                outputView.printLevel(game, LevelLength);
-                Thread.Sleep(1000);
-                LevelLength--;
-            }
+            //while (LevelLength > 0)
+            //{
+            //    outputView.printLevel(game, LevelLength);
+            //    Thread.Sleep(1000);
+            //    LevelLength--;
+            //}
         }
 
         public Tile[,] ReadLevel(int levelNumber)
@@ -68,7 +68,7 @@ namespace BoulderDash.Controller
                     switch (chars[y, x])
                     {
                         case 'R':
-                            Rockford r = new Rockford(tiles[y, x], game);
+                            Rockford r = new Rockford(game);
                             game.Rockford = r;
                             tiles[y, x] = new Tile(new Empty(r));
                             tiles[y, x].StaticObject.moveableObject = game.Rockford;
@@ -78,10 +78,16 @@ namespace BoulderDash.Controller
                             tiles[y, x] = new Tile(new Mud(null));
                             break;
                         case 'B':
-                            tiles[y, x] = new Tile(new Empty(new Boulder(null, game)));
+                            Boulder b = new Boulder(game);
+                            tiles[y, x] = new Tile(new Empty(b));
+                            tiles[y, x].StaticObject.moveableObject.Location = tiles[y, x];
+                            game.moveableObjects.Add(b);
                             break;
                         case 'D':
-                            tiles[y, x] = new Tile(new Empty(new Diamond(tiles[y, x], game)));
+                            Diamond d = new Diamond(game);
+                            tiles[y, x] = new Tile(new Empty(d));
+                            tiles[y, x].StaticObject.moveableObject.Location = tiles[y, x];
+                            game.moveableObjects.Add(d);
                             break;
                         case 'W':
                             tiles[y, x] = new Tile(new Wall(null));
@@ -90,16 +96,25 @@ namespace BoulderDash.Controller
                             tiles[y, x] = new Tile(new SteelWall(null));
                             break;
                         case 'F':
-                            tiles[y, x] = new Tile(new Empty(new Firefly(tiles[y, x], game)));
+                            Firefly f = new Firefly(game);
+                            tiles[y, x] = new Tile(new Empty(f));
+                            tiles[y, x].StaticObject.moveableObject.Location = tiles[y, x];
+                            game.moveableObjects.Add(f);
                             break;
                         case 'E':
                             tiles[y, x] = new Tile(new Exit(null));
                             break;
                         case 'H':
-                            tiles[y, x] = new Tile(new Empty(new HardenedMud(tiles[y, x], game)));
+                            HardenedMud h = new HardenedMud(game);
+                            tiles[y, x] = new Tile(new Empty(h));
+                            tiles[y, x].StaticObject.moveableObject.Location = tiles[y, x];
+                            game.moveableObjects.Add(h);
                             break;
                         case 'T':
-                            tiles[y, x] = new Tile(new Empty(new Explosive(tiles[y, x], game)));
+                            Explosive e = new Explosive(game);
+                            tiles[y, x] = new Tile(new Empty(e));
+                            tiles[y, x].StaticObject.moveableObject.Location = tiles[y, x];
+                            game.moveableObjects.Add(e);
                             break;
                         case ' ':
                             tiles[y, x] = new Tile(new Empty(null));
