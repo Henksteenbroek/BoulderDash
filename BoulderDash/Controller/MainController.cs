@@ -39,21 +39,21 @@ namespace BoulderDash.Controller
 
         private void MoveRockFord()
         {
-            //while (LevelLength > 0)
-            //{
-            //    game.Rockford.move(inputView.readInput());
-            //    outputView.printLevel(game, LevelLength);
-            //}
+            while (LevelLength > 0)
+            {
+                game.Rockford.move(inputView.readInput());
+                outputView.printLevel(game, LevelLength);
+            }
         }
 
         private void CountDown()
         {
-            //while (LevelLength > 0)
-            //{
-            //    outputView.printLevel(game, LevelLength);
-            //    Thread.Sleep(1000);
-            //    LevelLength--;
-            //}
+            while (LevelLength > 0)
+            {
+                outputView.printLevel(game, LevelLength);
+                Thread.Sleep(1000);
+                LevelLength--;
+            }
         }
 
         public Tile[,] ReadLevel(int levelNumber)
