@@ -13,7 +13,7 @@ namespace BoulderDash.Controller
     {
         public Tile First { get; set; }
         public Tile Last { get; set; }
-        public Rockford rockford { get; set; }
+        public Rockford Rockford { get; set; }
 
         public Game()
         {
