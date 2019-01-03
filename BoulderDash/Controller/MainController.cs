@@ -41,7 +41,7 @@ namespace BoulderDash.Controller
         {
             while (LevelLength > 0)
             {
-                game.rockford.move(inputView.readInput());
+                game.Rockford.move(inputView.readInput());
                 outputView.printLevel(game, LevelLength);
             }
         }
@@ -69,9 +69,9 @@ namespace BoulderDash.Controller
                     {
                         case 'R':
                             Rockford r = new Rockford(tiles[y, x], game);
-                            game.rockford = r;
+                            game.Rockford = r;
                             tiles[y, x] = new Tile(new Empty(r));
-                            tiles[y, x].StaticObject.moveableObject = game.rockford;
+                            tiles[y, x].StaticObject.moveableObject = game.Rockford;
                             tiles[y, x].StaticObject.moveableObject.Location = tiles[y, x];
                             break;
                         case 'M':
