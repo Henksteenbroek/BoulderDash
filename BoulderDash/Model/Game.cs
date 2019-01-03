@@ -20,31 +20,5 @@ namespace BoulderDash.Controller
         {
             moveableObjects = new List<MoveableObject>();
         }
-
-        public void MoveObject(MoveableObject moveableObject, int direction)
-        {
-            Tile target = null;
-
-            switch (direction)
-            {
-                case 1:
-                    target = moveableObject.Location.Up;
-                    break;
-                case 2:
-                    target = moveableObject.Location.Down;
-                    break;
-                case 3:
-                    target = moveableObject.Location.Left;
-                    break;
-                case 4:
-                    target = moveableObject.Location.Right;
-                    break;
-            }
-
-            moveableObject.Location.StaticObject.moveableObject = null;
-            moveableObject.Location = target;
-            target.StaticObject.moveableObject = moveableObject;
-
-        }
     }
 }

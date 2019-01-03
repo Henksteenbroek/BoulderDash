@@ -16,7 +16,28 @@ namespace BoulderDash.Model.MoveableObjects
 
         public override void move(int direction)
         {
-            game.MoveObject(this, direction);
+            Tile target = null;
+
+            switch (direction)
+            {
+                case 1:
+                    target = Location.Up;
+                    break;
+                case 2:
+                    target = Location.Down;
+                    break;
+                case 3:
+                    target = Location.Left;
+                    break;
+                case 4:
+                    target = Location.Right;
+                    break;
+            }
+
+            target.StaticObject.moveableObject = this;
+            Location.StaticObject.moveableObject = null;
+            Location = target;
         }
     }
 }
+
