@@ -9,10 +9,9 @@ namespace BoulderDash.Model.MoveableObjects
 {
     public class HardenedMud : MoveableObject
     {
-        public HardenedMud(Tile location, Game game) : base(location, game)
+        public HardenedMud(Game game) : base(game)
         {
             DrawChar = 'H';
-            Location = location;
         }
 
         public override void move(int direction)

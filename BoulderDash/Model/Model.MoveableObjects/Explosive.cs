@@ -9,10 +9,9 @@ namespace BoulderDash.Model.MoveableObjects
 {
     public class Explosive : MoveableObject
     {
-        public Explosive(Tile location, Game game) : base(location, game)
+        public Explosive(Game game) : base(game)
         {
             DrawChar = 'X';
-            Location = location;
         }
 
         public override void move(int direction)

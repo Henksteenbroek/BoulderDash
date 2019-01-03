@@ -9,10 +9,9 @@ namespace BoulderDash.Model.MoveableObjects
 {
     public class Rockford : MoveableObject
     {
-        public Rockford(Tile location, Game game) : base(location, game)
+        public Rockford(Game game) : base(game)
         {
             DrawChar = 'R';
-            Location = location;
         }
 
         public override void move(int direction)

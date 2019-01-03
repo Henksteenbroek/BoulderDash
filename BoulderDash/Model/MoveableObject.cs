@@ -15,9 +15,8 @@ namespace BoulderDash.Model
         public bool IsRound { get; set; }
         public char DrawChar { get; set; }
 
-        public MoveableObject(Tile location, Game game)
+        public MoveableObject(Game game)
         {
-            Location = location;
             this.game = game;
         }
 

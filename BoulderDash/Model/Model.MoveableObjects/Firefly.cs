@@ -9,10 +9,9 @@ namespace BoulderDash.Model.MoveableObjects
 {
     public class Firefly : MoveableObject
     {
-        public Firefly(Tile location, Game game) : base(location, game)
+        public Firefly(Game game) : base(game)
         {
             DrawChar = 'F';
-            Location = location;
         }
 
         public override void move(int direction)
