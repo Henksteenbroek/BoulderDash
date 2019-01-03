@@ -14,9 +14,8 @@ namespace BoulderDash.Model.MoveableObjects
             DrawChar = 'F';
         }
 
-        public override void move(int direction)
+        public override void move()
         {
-            throw new NotImplementedException();
         }
     }
 }

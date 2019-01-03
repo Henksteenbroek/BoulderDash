@@ -20,7 +20,7 @@ namespace BoulderDash.Model
             this.game = game;
         }
 
-        public virtual void move(int direction)
+        public virtual void move()
         {
         }
     }

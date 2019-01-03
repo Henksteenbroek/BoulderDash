@@ -14,7 +14,7 @@ namespace BoulderDash.Model.MoveableObjects
             DrawChar = 'R';
         }
 
-        public override void move(int direction)
+        public void move(int direction)
         {
             Tile target = null;
 

@@ -14,7 +14,8 @@ namespace BoulderDash.Controller
     public class MainController
     {
         private int LevelLength = 150;
-        private Thread thread;
+        private Thread CountDownThread;
+        private Thread MoveableObjectsThread;
 
         public Tile[,] tiles { get; set; }
         LevelData levelData;
@@ -31,9 +32,13 @@ namespace BoulderDash.Controller
             game = new Game();
             ReadLevel(1);
             
-            thread = new Thread(CountDown);
-            thread.Start();
+            CountDownThread = new Thread(CountDown);
+            CountDownThread.Start();
 
+            //MoveableObjectsThread = new Thread(MoveMoveableObjects);
+            //MoveableObjectsThread.Start();
+
+            outputView.printLevel(game, LevelLength);
             MoveRockFord();
         }
 
@@ -50,11 +55,32 @@ namespace BoulderDash.Controller
         {
             while (LevelLength >= 0)
             {
-                outputView.printLevel(game, LevelLength);
+                for(int i = 0; i<3; i++)
+                {
+                    foreach(var item in game.moveableObjects)
+                    {
+                        item.move();
+                    }
+
+                    outputView.printLevel(game, LevelLength);
+                }
                 Thread.Sleep(1000);
                 LevelLength--;
             }
         }
+
+        //private void MoveMoveableObjects()
+        //{
+        //    while (LevelLength >= 0)
+        //    {
+        //        foreach(var item in game.moveableObjects)
+        //        {
+        //            item.move();
+        //            outputView.printLevel(game, LevelLength);
+        //            Thread.Sleep(333);
+        //        }
+        //    }
+        //}
 
         public Tile[,] ReadLevel(int levelNumber)
         {
