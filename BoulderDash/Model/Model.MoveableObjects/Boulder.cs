@@ -11,11 +11,13 @@ namespace BoulderDash.Model.MoveableObjects
     {
         public Boulder(Game game) : base(game)
         {
-            DrawChar = 'B';
+            DrawChar = 'O';
+            IsWalkable = false;
         }
 
-        public override void move()
+        public override bool move()
         {
+            return true;
         }
     }
 }

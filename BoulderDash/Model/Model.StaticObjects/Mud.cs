@@ -23,6 +23,7 @@ namespace BoulderDash.Model.StaticObjects
         }
 
         public MoveableObject moveableObject { get; set; }
+        public bool IsWalkable { get { return true; } }
 
         public Mud(MoveableObject moveableObject)
         {

@@ -30,7 +30,7 @@ namespace BoulderDash.Controller
             inputView = new InputView();
             levelData = new LevelData();
             game = new Game();
-            ReadLevel(1);
+            ReadLevel(2);
             
             CountDownThread = new Thread(CountDown);
             CountDownThread.Start();
@@ -61,10 +61,9 @@ namespace BoulderDash.Controller
                     {
                         item.move();
                     }
-
                     outputView.printLevel(game, LevelLength);
+                    Thread.Sleep(1000/3);
                 }
-                Thread.Sleep(1000);
                 LevelLength--;
             }
         }

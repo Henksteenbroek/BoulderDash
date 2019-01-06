@@ -13,6 +13,7 @@ namespace BoulderDash.Model
         public Game game;
         public Tile Location { get; set; }
         public bool IsRound { get; set; }
+        public bool IsWalkable { get; set; }
         public char DrawChar { get; set; }
 
         public MoveableObject(Game game)
@@ -20,8 +21,14 @@ namespace BoulderDash.Model
             this.game = game;
         }
 
-        public virtual void move()
+        public virtual bool move(int direction)
         {
+            return false;
+        }
+
+        public virtual bool move()
+        {
+            return false;
         }
     }
 }

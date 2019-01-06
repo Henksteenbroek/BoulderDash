@@ -14,7 +14,6 @@ namespace BoulderDash.View
         public void printLevel(Game game, int LevelLength)
         {
             Console.Clear();
-
             Console.WriteLine("Time left: " + LevelLength);
 
             Tile temp1 = game.First;
@@ -35,6 +34,7 @@ namespace BoulderDash.View
                 }
             }
             Console.WriteLine(game.Last.StaticObject.DrawChar);
+            Console.SetCursorPosition(0,0);
         }
     }
 }
