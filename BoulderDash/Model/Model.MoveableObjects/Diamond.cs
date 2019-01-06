@@ -7,18 +7,13 @@ using System.Threading.Tasks;
 
 namespace BoulderDash.Model.MoveableObjects
 {
-    public class Diamond : MoveableObject
+    public class Diamond : Rollable
     {
         public Diamond(Game game) : base(game)
         {
             DrawChar = '$';
             IsWalkable = true;
             IsRound = true;
-        }
-
-        public override bool move()
-        {
-            return true;
         }
     }
 }

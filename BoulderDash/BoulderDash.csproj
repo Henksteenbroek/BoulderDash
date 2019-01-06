@@ -59,6 +59,7 @@
     <Compile Include="Model\Model.MoveableObjects\Rockford.cs" />
     <Compile Include="Model\Model.StaticObjects\SteelWall.cs" />
     <Compile Include="Model\Model.StaticObjects\Wall.cs" />
+    <Compile Include="Model\Rollable.cs" />
     <Compile Include="Model\StaticObject.cs" />
     <Compile Include="Model\Tile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
