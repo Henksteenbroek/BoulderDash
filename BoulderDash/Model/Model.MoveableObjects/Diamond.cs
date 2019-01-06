@@ -13,6 +13,7 @@ namespace BoulderDash.Model.MoveableObjects
         {
             DrawChar = '$';
             IsWalkable = true;
+            IsRound = true;
         }
 
         public override bool move()

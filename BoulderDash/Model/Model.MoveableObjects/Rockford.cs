@@ -1,4 +1,5 @@
 ﻿using BoulderDash.Controller;
+using BoulderDash.Model.StaticObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace BoulderDash.Model.MoveableObjects
             DrawChar = 'R';
         }
 
-        public bool move(int direction)
+        public override bool move(int direction)
         {
             Tile target = null;
 
@@ -32,6 +33,8 @@ namespace BoulderDash.Model.MoveableObjects
                 case 4:
                     target = Location.Right;
                     break;
+                case 0:
+                    return false;
             }
 
             if(target.StaticObject.moveableObject?.IsWalkable == false)
@@ -46,6 +49,7 @@ namespace BoulderDash.Model.MoveableObjects
 
             target.StaticObject.moveableObject = this;
             Location.StaticObject.moveableObject = null;
+            Location.StaticObject = new Empty(null);
             Location = target;
             return true;
         }

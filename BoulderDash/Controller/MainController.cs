@@ -15,7 +15,6 @@ namespace BoulderDash.Controller
     {
         private int LevelLength = 150;
         private Thread CountDownThread;
-        private Thread MoveableObjectsThread;
 
         public Tile[,] tiles { get; set; }
         LevelData levelData;
@@ -64,7 +63,7 @@ namespace BoulderDash.Controller
 
                     outputView.printLevel(game, LevelLength);
 
-                    Thread.Sleep(1000*3);
+                    Thread.Sleep(1000);
                 }
                 LevelLength--;
             }

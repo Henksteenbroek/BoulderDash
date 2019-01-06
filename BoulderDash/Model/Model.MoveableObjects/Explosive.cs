@@ -12,15 +12,17 @@ namespace BoulderDash.Model.MoveableObjects
         public Explosive(Game game) : base(game)
         {
             DrawChar = 'X';
+            IsRound = true;
         }
 
-        public override void move()
+        public override bool move()
         {
             //Tile target = Location.Right;
 
             //target.StaticObject.moveableObject = this;
             //Location.StaticObject.moveableObject = null;
             //Location = target;
+            return true;
         }
     }
 }

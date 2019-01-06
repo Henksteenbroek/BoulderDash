@@ -24,6 +24,7 @@ namespace BoulderDash.Model.StaticObjects
 
         public MoveableObject moveableObject { get; set; }
         public bool IsWalkable { get { return true; } }
+        public bool IsEmpty { get { return false; } }
 
         public Exit(MoveableObject moveableObject)
         {
