@@ -10,5 +10,6 @@ namespace BoulderDash.Model
     {
         MoveableObject moveableObject { get; set; }
         char DrawChar { get; set; }
+        bool IsWalkable { get; }
     }
 }

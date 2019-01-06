@@ -14,7 +14,7 @@ namespace BoulderDash.Model.MoveableObjects
             DrawChar = 'R';
         }
 
-        public void move(int direction)
+        public bool move(int direction)
         {
             Tile target = null;
 
@@ -34,9 +34,20 @@ namespace BoulderDash.Model.MoveableObjects
                     break;
             }
 
+            if(target.StaticObject.moveableObject?.IsWalkable == false)
+            {
+                target.StaticObject.moveableObject?.move(direction);
+                return false;
+            }
+            else if(target.StaticObject.IsWalkable == false)
+            {
+                return false;
+            }
+
             target.StaticObject.moveableObject = this;
             Location.StaticObject.moveableObject = null;
             Location = target;
+            return true;
         }
     }
 }
