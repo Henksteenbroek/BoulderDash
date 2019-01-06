@@ -30,7 +30,7 @@ namespace BoulderDash.Controller
             levelData = new LevelData();
             game = new Game();
             ReadLevel(1);
-            
+
             CountDownThread = new Thread(CountDown);
             CountDownThread.Start();
 
@@ -54,9 +54,9 @@ namespace BoulderDash.Controller
         {
             while (LevelLength >= 0)
             {
-                for(int i = 0; i<3; i++)
+                for (int i = 0; i < 3; i++)
                 {
-                    foreach(var item in game.moveableObjects)
+                    foreach (var item in game.moveableObjects)
                     {
                         item.move();
                     }

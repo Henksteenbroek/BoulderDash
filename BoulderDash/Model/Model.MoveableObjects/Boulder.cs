@@ -14,7 +14,5 @@ namespace BoulderDash.Model.MoveableObjects
             DrawChar = 'B';
             IsRound = true;
         }
-
-      
     }
 }
