@@ -16,6 +16,11 @@ namespace BoulderDash.Model.MoveableObjects
 
         public override void move()
         {
+            Tile target = Location.Down;
+
+            //target.StaticObject.moveableObject = this;
+            //Location.StaticObject.moveableObject = null;
+            //Location = target;
         }
     }
 }

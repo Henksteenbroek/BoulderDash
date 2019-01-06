@@ -63,24 +63,12 @@ namespace BoulderDash.Controller
                     }
 
                     outputView.printLevel(game, LevelLength);
+
+                    Thread.Sleep(1000*3);
                 }
-                Thread.Sleep(1000);
                 LevelLength--;
             }
         }
-
-        //private void MoveMoveableObjects()
-        //{
-        //    while (LevelLength >= 0)
-        //    {
-        //        foreach(var item in game.moveableObjects)
-        //        {
-        //            item.move();
-        //            outputView.printLevel(game, LevelLength);
-        //            Thread.Sleep(333);
-        //        }
-        //    }
-        //}
 
         public Tile[,] ReadLevel(int levelNumber)
         {
