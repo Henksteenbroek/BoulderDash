@@ -16,6 +16,7 @@ namespace BoulderDash.Model.MoveableObjects
             DrawChar = 'F';
             IsWalkable = false;
             direction = 1;
+            Destroyable = true;
         }
 
         public override bool move()

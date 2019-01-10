@@ -14,6 +14,7 @@ namespace BoulderDash.Model.MoveableObjects
             DrawChar = '$';
             IsWalkable = true;
             IsRound = true;
+            Destroyable = true;
         }
     }
 }

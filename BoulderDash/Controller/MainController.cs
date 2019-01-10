@@ -14,6 +14,7 @@ namespace BoulderDash.Controller
     public class MainController
     {
         private int LevelLength = 150;
+        private bool GameOver;
         private Thread CountDownThread;
 
         public Tile[,] tiles { get; set; }
@@ -31,6 +32,8 @@ namespace BoulderDash.Controller
             game = new Game();
             ReadLevel(1);
 
+            GameOver = false;
+
             CountDownThread = new Thread(CountDown);
             CountDownThread.Start();
 
@@ -43,8 +46,13 @@ namespace BoulderDash.Controller
 
         private void MoveRockFord()
         {
-            while (LevelLength >= 0)
+            while (!GameOver)
             {
+                if(game.Rockford == null || LevelLength <= 0)
+                {
+                    GameOver = true;
+                    break;
+                }
                 game.Rockford.move(inputView.readInput());
                 outputView.printLevel(game, LevelLength);
             }
@@ -52,7 +60,7 @@ namespace BoulderDash.Controller
 
         private void CountDown()
         {
-            while (LevelLength >= 0)
+            while (!GameOver)
             {
                 for (int i = 0; i < 3; i++)
                 {
@@ -124,7 +132,7 @@ namespace BoulderDash.Controller
                             game.moveableObjects.Add(h);
                             break;
                         case 'T':
-                            Explosive e = new Explosive(game);
+                            TNT e = new TNT(game);
                             tiles[y, x] = new Tile(new Empty(e));
                             tiles[y, x].StaticObject.moveableObject.Location = tiles[y, x];
                             game.moveableObjects.Add(e);

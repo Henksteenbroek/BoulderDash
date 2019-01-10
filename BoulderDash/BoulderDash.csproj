@@ -51,7 +51,7 @@
     <Compile Include="Model\Model.MoveableObjects\Diamond.cs" />
     <Compile Include="Model\Model.StaticObjects\Empty.cs" />
     <Compile Include="Model\Model.StaticObjects\Exit.cs" />
-    <Compile Include="Model\Model.MoveableObjects\Explosive.cs" />
+    <Compile Include="Model\Model.MoveableObjects\TNT.cs" />
     <Compile Include="Model\Model.MoveableObjects\Firefly.cs" />
     <Compile Include="Model\MoveableObject.cs" />
     <Compile Include="Model\Model.MoveableObjects\HardenedMud.cs" />

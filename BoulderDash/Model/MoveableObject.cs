@@ -14,6 +14,8 @@ namespace BoulderDash.Model
         public Tile Location { get; set; }
         public bool IsRound { get; set; }
         public bool IsWalkable { get; set; }
+        public bool IsPushable { get; set; }
+        public bool Destroyable { get; set; }
         public char DrawChar { get; set; }
 
         public MoveableObject(Game game)

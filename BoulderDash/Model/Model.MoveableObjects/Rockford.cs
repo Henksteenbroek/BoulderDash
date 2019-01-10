@@ -13,6 +13,7 @@ namespace BoulderDash.Model.MoveableObjects
         public Rockford(Game game) : base(game)
         {
             DrawChar = 'R';
+            Destroyable = true;
         }
 
         public override bool move(int direction)
@@ -37,16 +38,36 @@ namespace BoulderDash.Model.MoveableObjects
                     return false;
             }
 
-            if(target.StaticObject.moveableObject?.IsWalkable == false)
+
+            if (target.StaticObject.moveableObject?.IsPushable == true)
+            {
+                if (target.StaticObject.moveableObject.move(direction))
+                {
+                    return finalizeMove(target, true);
+                }
+                return false;
+            }
+
+            if (target.StaticObject.moveableObject?.IsWalkable == false)
             {
                 target.StaticObject.moveableObject?.move(direction);
                 return false;
             }
-            else if(target.StaticObject.IsWalkable == false)
+
+            if (target.StaticObject.IsWalkable)
             {
-                return false;
+                return finalizeMove(target, false);
             }
 
+            return false;
+        }
+
+        public bool finalizeMove(Tile target, bool IsPushable)
+        {
+            if (!IsPushable)
+            {
+                game.moveableObjects.Remove(target.StaticObject.moveableObject);
+            }
             target.StaticObject.moveableObject = this;
             Location.StaticObject.moveableObject = null;
             Location.StaticObject = new Empty(null);

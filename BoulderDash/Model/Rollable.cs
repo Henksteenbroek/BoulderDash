@@ -13,6 +13,11 @@ namespace BoulderDash.Model
         {
         }
 
+        public override bool move(int direction)
+        {
+            return false;
+        }
+
         public override bool move()
         {
             Tile target = Location;
@@ -20,10 +25,7 @@ namespace BoulderDash.Model
             //Naar onder vallen (leeg vakje eronder)
             if (target.Down.StaticObject.IsEmpty && target.Down.StaticObject.moveableObject == null)
             {
-                target.Down.StaticObject.moveableObject = this;
-                Location.StaticObject.moveableObject = null;
-                Location = target.Down;
-                return true;
+                return MoveToLocation(target.Down);
             }
 
             //Rollable object staat op een ander rollable object
@@ -35,10 +37,7 @@ namespace BoulderDash.Model
                 {
                     if (target.Right.StaticObject.moveableObject == null && target.Right.Down.StaticObject.moveableObject == null)
                     {
-                        target.Right.Down.StaticObject.moveableObject = this;
-                        Location.StaticObject.moveableObject = null;
-                        Location = target.Right.Down;
-                        return true;
+                        return MoveToLocation(target.Right.Down);
                     }
                     return false;
                 }
@@ -48,10 +47,7 @@ namespace BoulderDash.Model
                 {
                     if (target.Left.StaticObject.moveableObject == null && target.Left.Down.StaticObject.moveableObject == null)
                     {
-                        target.Left.Down.StaticObject.moveableObject = this;
-                        Location.StaticObject.moveableObject = null;
-                        Location = target.Left.Down;
-                        return true;
+                        return MoveToLocation(target.Left.Down);
                     }
                     return false;
                 }
@@ -60,6 +56,18 @@ namespace BoulderDash.Model
             }
 
             return false;
+        }
+
+        public bool MoveToLocation(Tile target)
+        {
+            if (target.StaticObject.moveableObject?.Destroyable == true)
+            {
+                game.Rockford = null;
+            }
+            target.StaticObject.moveableObject = this;
+            Location.StaticObject.moveableObject = null;
+            Location = target;
+            return true;
         }
     }
 }

@@ -12,5 +12,6 @@ namespace BoulderDash.Model
         char DrawChar { get; set; }
         bool IsWalkable { get; }
         bool IsEmpty { get; }
+        bool Destroyable { get; }
     }
 }
