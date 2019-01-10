@@ -28,6 +28,9 @@ namespace BoulderDash.View
                 case ConsoleKey.RightArrow:
                     returnValue = 4;
                     break;
+                case ConsoleKey.R:
+                    returnValue = 5;
+                    break;
                 default:
                     returnValue = 0;
                     break;

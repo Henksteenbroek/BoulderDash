@@ -37,42 +37,68 @@ namespace BoulderDash.Controller
             CountDownThread = new Thread(CountDown);
             CountDownThread.Start();
 
-            //MoveableObjectsThread = new Thread(MoveMoveableObjects);
-            //MoveableObjectsThread.Start();
-
             outputView.printLevel(game, LevelLength);
-            MoveRockFord();
+
+            StartGame();
         }
 
-        private void MoveRockFord()
+        private void StartGame()
         {
+            foreach (var item in game.moveableObjects)
+            {
+                game.tempList.Add(item);
+            }
             while (!GameOver)
             {
-                if(game.Rockford == null || LevelLength <= 0)
+                if (game.Rockford == null)
                 {
                     GameOver = true;
                     break;
                 }
                 game.Rockford.move(inputView.readInput());
                 outputView.printLevel(game, LevelLength);
+
+                game.moveableObjects.Clear();
+                foreach (var item in game.tempList)
+                {
+                    game.moveableObjects.Add(item);
+                }
+
+                foreach (var item in game.moveableObjects)
+                {
+                    item.move();
+                }
+
+                outputView.printLevel(game, LevelLength);
             }
+
+            outputView.ShowGameOverScreen(game);
+            if(inputView.readInput() == 5)
+            {
+                ResetGame();
+            }
+        }
+
+        private void ResetGame()
+        {
+            outputView = new OutputView();
+            inputView = new InputView();
+            levelData = new LevelData();
+            game = new Game();
+            ReadLevel(1);
+            LevelLength = 150;
+            CountDownThread = new Thread(CountDown);
+            outputView.printLevel(game, LevelLength);
+            GameOver = false;
+            CountDownThread.Start();
+            StartGame();
         }
 
         private void CountDown()
         {
             while (!GameOver)
             {
-                for (int i = 0; i < 3; i++)
-                {
-                    foreach (var item in game.moveableObjects)
-                    {
-                        item.move();
-                    }
-
-                    outputView.printLevel(game, LevelLength);
-
-                    Thread.Sleep(1000);
-                }
+                Thread.Sleep(1000);
                 LevelLength--;
             }
         }

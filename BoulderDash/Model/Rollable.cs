@@ -22,6 +22,12 @@ namespace BoulderDash.Model
         {
             Tile target = Location;
 
+            if(target.Down == game.Rockford?.Location)
+            {
+                game.Rockford = null;
+                return true;
+            }
+
             //Naar onder vallen (leeg vakje eronder)
             if (target.Down.StaticObject.IsEmpty && target.Down.StaticObject.moveableObject == null)
             {
@@ -60,10 +66,6 @@ namespace BoulderDash.Model
 
         public bool MoveToLocation(Tile target)
         {
-            if (target.StaticObject.moveableObject?.Destroyable == true)
-            {
-                game.Rockford = null;
-            }
             target.StaticObject.moveableObject = this;
             Location.StaticObject.moveableObject = null;
             Location = target;

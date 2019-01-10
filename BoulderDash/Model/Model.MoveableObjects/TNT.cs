@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace BoulderDash.Model.MoveableObjects
@@ -13,35 +14,31 @@ namespace BoulderDash.Model.MoveableObjects
 
         private int timer;
         private bool hasMoved;
-        private bool hasExploded;
+        private Thread ExplodeTimer;
 
         public TNT(Game game) : base(game)
         {
             DrawChar = 'X';
             IsWalkable = true;
             IsRound = true;
-            timer = 90;
+            timer = 30;
             hasMoved = false;
-            hasExploded = false;
             Destroyable = true;
+            ExplodeTimer = new Thread(AutoExplode);
+            ExplodeTimer.Start();
         }
 
         public override bool move()
         {
-            if (!hasExploded)
+            if (base.move())
             {
-                AutoExplode();
+                hasMoved = true;
+                return true;
+            }
 
-                if (base.move())
-                {
-                    hasMoved = true;
-                    return true;
-                }
-
-                if (hasMoved && !base.move())
-                {
-                    Explode();
-                }
+            if (hasMoved && !base.move())
+            {
+                Explode();
             }
 
             return false;
@@ -49,11 +46,12 @@ namespace BoulderDash.Model.MoveableObjects
 
         public void AutoExplode()
         {
-            timer--;
-            if (timer <= 0)
+            while (timer > 0)
             {
-                Explode();
+                timer--;
+                Thread.Sleep(1000);
             }
+            Explode();
         }
 
         public void Explode()
@@ -66,7 +64,11 @@ namespace BoulderDash.Model.MoveableObjects
                 {
                     if (target.StaticObject.moveableObject?.Destroyable == true)
                     {
-                        //game.moveableObjects.Remove(target.StaticObject.moveableObject);
+                        if (target == game.Rockford?.Location)
+                        {
+                            game.Rockford = null;
+                        }
+                        game.tempList.Remove(target.StaticObject.moveableObject);
                         target.StaticObject.moveableObject = null;
                     }
 
@@ -85,7 +87,7 @@ namespace BoulderDash.Model.MoveableObjects
                     target = temp;
                 }
             }
-            hasExploded = true;
+            game.tempList.Remove(this);
             Location.StaticObject = new Empty(null);
         }
     }

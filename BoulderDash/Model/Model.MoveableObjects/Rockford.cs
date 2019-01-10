@@ -10,6 +10,7 @@ namespace BoulderDash.Model.MoveableObjects
 {
     public class Rockford : MoveableObject
     {
+
         public Rockford(Game game) : base(game)
         {
             DrawChar = 'R';
@@ -65,9 +66,8 @@ namespace BoulderDash.Model.MoveableObjects
         public bool finalizeMove(Tile target, bool IsPushable)
         {
             if (!IsPushable)
-            {
-                game.moveableObjects.Remove(target.StaticObject.moveableObject);
-            }
+                game.tempList.Remove(target.StaticObject.moveableObject);
+
             target.StaticObject.moveableObject = this;
             Location.StaticObject.moveableObject = null;
             Location.StaticObject = new Empty(null);
