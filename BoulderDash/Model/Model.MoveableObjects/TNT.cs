@@ -60,27 +60,30 @@ namespace BoulderDash.Model.MoveableObjects
         {
             Tile temp = Location.Left.Up;
             Tile target = temp;
-            while (target != Location.Right.Right.Down)
+            while (target != Location.Right.Down)
             {
                 for (int i = 0; i < 3; i++)
                 {
+                    if (target.StaticObject.moveableObject?.Destroyable == true)
+                    {
+                        //game.moveableObjects.Remove(target.StaticObject.moveableObject);
+                        target.StaticObject.moveableObject = null;
+                    }
 
                     if (target.StaticObject.Destroyable)
                     {
                         target.StaticObject = new Empty(null);
-                        if (target.StaticObject.moveableObject?.Destroyable == true)
-                        {
-                            target.StaticObject.moveableObject = null;
-                        }
                     }
-                    target = target.Right;
+
+                    if (target != Location.Right.Down)
+                        target = target.Right;
                 }
+
                 if (temp != Location.Down.Left)
                 {
                     temp = temp.Down;
                     target = temp;
                 }
-
             }
             hasExploded = true;
             Location.StaticObject = new Empty(null);
