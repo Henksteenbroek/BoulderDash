@@ -34,13 +34,16 @@ namespace BoulderDash.View
                 }
             }
             Console.WriteLine(game.Last.StaticObject.DrawChar);
-            Console.SetCursorPosition(0,0);
         }
 
-        public void ShowGameOverScreen(Game game)
+        public void ShowGameOverScreen()
         {
-            Console.Clear();
-            Console.WriteLine("Oh dear, you are dead... Press R to play again");
+            Console.WriteLine("Oh dear, you are dead! Press a level number to play again");
+        }
+
+        public void ShowStartScreen()
+        {
+            Console.WriteLine("Welcome to boulder dash, which level do you wish to play? [1 - 4]");
         }
     }
 }

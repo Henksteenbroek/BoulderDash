@@ -48,7 +48,13 @@ namespace BoulderDash.Model.MoveableObjects
                 target.StaticObject.moveableObject = this;
                 Location.StaticObject.moveableObject = null;
                 Location = target;
-                return true;
+            }
+
+            if (CheckForRockFord())
+            {
+                Explode();
+                game.Rockford = null;
+                return false;
             }
 
             return false;
@@ -150,6 +156,23 @@ namespace BoulderDash.Model.MoveableObjects
             {
                 return true;
             }
+            return false;
+        }
+
+        private bool CheckForRockFord()
+        {
+            if (Location.Up == game.Rockford?.Location)
+                return true;
+
+            if (Location.Left == game.Rockford?.Location)
+                return true;
+
+            if (Location.Down == game.Rockford?.Location)
+                return true;
+
+            if (Location.Right == game.Rockford?.Location)
+                return true;
+
             return false;
         }
     }

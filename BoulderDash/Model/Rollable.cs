@@ -106,7 +106,7 @@ namespace BoulderDash.Model
         {
             if (target.Down == game.Rockford?.Location)
             {
-                game.Rockford = null;
+                target.Down.StaticObject.moveableObject.Explode();
                 return true;
             }
 
@@ -116,7 +116,7 @@ namespace BoulderDash.Model
                 {
                     if (target.Right.Down == game.Rockford?.Location)
                     {
-                        game.Rockford = null;
+                        target.Right.Down.StaticObject.moveableObject.Explode();
                         return true;
                     }
                 }
@@ -125,7 +125,7 @@ namespace BoulderDash.Model
                 {
                     if (target.Left.Down == game.Rockford?.Location)
                     {
-                        game.Rockford = null;
+                        target.Left.Down.StaticObject.moveableObject.Explode();
                         return true;
                     }
                 }

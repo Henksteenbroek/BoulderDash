@@ -47,7 +47,7 @@ namespace BoulderDash.Model
                     {
                         if (target == game.Rockford?.Location)
                         {
-                            game.Rockford = null;
+                            target.StaticObject.moveableObject.Explode();
                         }
                         game.tempList.Remove(target.StaticObject.moveableObject);
                         target.StaticObject.moveableObject = null;

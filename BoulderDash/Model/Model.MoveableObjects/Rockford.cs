@@ -15,7 +15,7 @@ namespace BoulderDash.Model.MoveableObjects
         {
             DrawChar = 'R';
             Destroyable = true;
-            CanExplode = false;
+            CanExplode = true;
             Supportive = false;
         }
 
@@ -79,7 +79,8 @@ namespace BoulderDash.Model.MoveableObjects
 
         public override bool Explode()
         {
-            return false;
+            game.Rockford = null;
+            return base.Explode();
         }
     }
 }

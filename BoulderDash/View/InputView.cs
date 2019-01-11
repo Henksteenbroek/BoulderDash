@@ -11,6 +11,25 @@ namespace BoulderDash.View
         private ConsoleKeyInfo key;
         private int returnValue;
 
+        public int readLevelInput()
+        {
+            key = Console.ReadKey();
+
+            switch (key.Key)
+            {
+                case ConsoleKey.D1:
+                    return 1;
+                case ConsoleKey.D2:
+                    return 2;
+                case ConsoleKey.D3:
+                    return 3;
+                case ConsoleKey.D4:
+                    return 4;
+                default:
+                    return 0;
+            }
+        }
+
         public int readInput()
         {
             key = Console.ReadKey();

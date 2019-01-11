@@ -30,7 +30,7 @@ namespace BoulderDash.Controller
             inputView = new InputView();
             levelData = new LevelData();
             game = new Game();
-            ReadLevel(4);
+            StartUp();
 
             GameOver = false;
 
@@ -72,10 +72,7 @@ namespace BoulderDash.Controller
                 outputView.printLevel(game, LevelLength);
             }
 
-            outputView.ShowGameOverScreen(game);
-            while(inputView.readInput() != 5)
-            {
-            }
+            outputView.ShowGameOverScreen();
             ResetGame();
         }
 
@@ -85,7 +82,14 @@ namespace BoulderDash.Controller
             inputView = new InputView();
             levelData = new LevelData();
             game = new Game();
-            ReadLevel(1);
+
+            int i;
+            while ((i = inputView.readLevelInput()) == 0)
+            {
+            }
+
+            ReadLevel(i);
+
             LevelLength = 150;
             CountDownThread = new Thread(CountDown);
             outputView.printLevel(game, LevelLength);
@@ -101,6 +105,16 @@ namespace BoulderDash.Controller
                 Thread.Sleep(1000);
                 LevelLength--;
             }
+        }
+
+        private void StartUp()
+        {
+            outputView.ShowStartScreen();
+            int i;
+            while ((i = inputView.readLevelInput()) == 0)
+            {
+            }
+            ReadLevel(i);
         }
 
         public Tile[,] ReadLevel(int levelNumber)
