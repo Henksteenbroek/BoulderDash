@@ -30,7 +30,7 @@ namespace BoulderDash.Controller
             inputView = new InputView();
             levelData = new LevelData();
             game = new Game();
-            ReadLevel(1);
+            ReadLevel(4);
 
             GameOver = false;
 
@@ -73,10 +73,10 @@ namespace BoulderDash.Controller
             }
 
             outputView.ShowGameOverScreen(game);
-            if(inputView.readInput() == 5)
+            while(inputView.readInput() != 5)
             {
-                ResetGame();
             }
+            ResetGame();
         }
 
         private void ResetGame()

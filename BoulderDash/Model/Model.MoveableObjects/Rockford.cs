@@ -15,6 +15,8 @@ namespace BoulderDash.Model.MoveableObjects
         {
             DrawChar = 'R';
             Destroyable = true;
+            CanExplode = false;
+            Supportive = false;
         }
 
         public override bool move(int direction)
@@ -35,7 +37,7 @@ namespace BoulderDash.Model.MoveableObjects
                 case 4:
                     target = Location.Right;
                     break;
-                case 0:
+                default:
                     return false;
             }
 
@@ -73,6 +75,11 @@ namespace BoulderDash.Model.MoveableObjects
             Location.StaticObject = new Empty(null);
             Location = target;
             return true;
+        }
+
+        public override bool Explode()
+        {
+            return false;
         }
     }
 }

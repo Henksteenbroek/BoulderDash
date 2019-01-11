@@ -21,10 +21,14 @@ namespace BoulderDash.Model
         public override bool move()
         {
             Tile target = Location;
-
-            if(target.Down == game.Rockford?.Location)
+            
+            if (CanKillRockFord(target))
             {
-                game.Rockford = null;
+                return true;
+            }
+
+            if (FallOnExplosive(target))
+            {
                 return true;
             }
 
@@ -41,7 +45,8 @@ namespace BoulderDash.Model
                 //Naar rechts vallen
                 if (target.Right.StaticObject.IsEmpty && target.Right.Down.StaticObject.IsEmpty)
                 {
-                    if (target.Right.StaticObject.moveableObject == null && target.Right.Down.StaticObject.moveableObject == null)
+                    if (target.Right.StaticObject.moveableObject == null
+                        && target.Right.Down.StaticObject.moveableObject == null)
                     {
                         return MoveToLocation(target.Right.Down);
                     }
@@ -51,8 +56,10 @@ namespace BoulderDash.Model
                 //Naar link vallen
                 if (target.Left.StaticObject.IsEmpty && target.Left.Down.StaticObject.IsEmpty)
                 {
-                    if (target.Left.StaticObject.moveableObject == null && target.Left.Down.StaticObject.moveableObject == null)
+                    if (target.Left.StaticObject.moveableObject == null
+                        && target.Left.Down.StaticObject.moveableObject == null)
                     {
+
                         return MoveToLocation(target.Left.Down);
                     }
                     return false;
@@ -61,6 +68,68 @@ namespace BoulderDash.Model
                 return false;
             }
 
+            return false;
+        }
+
+        private bool FallOnExplosive(Tile target)
+        {
+            if (target.Down.StaticObject.moveableObject?.CanExplode == true)
+            {
+                target.Down.StaticObject.moveableObject.Explode();
+                return true;
+            }
+
+            if (target.Down.StaticObject.moveableObject?.IsRound == true)
+            {
+                if (target.Right.StaticObject.IsEmpty && target.Right.StaticObject.moveableObject == null)
+                {
+                    if (target.Right.Down.StaticObject.moveableObject?.CanExplode == true)
+                    {
+                        target.Right.Down.StaticObject.moveableObject.Explode();
+                        return true;
+                    }
+                }
+
+                if (target.Left.StaticObject.IsEmpty && target.Left.StaticObject.moveableObject == null)
+                {
+                    if (target.Left.Down.StaticObject.moveableObject?.CanExplode == true)
+                    {
+                        target.Left.Down.StaticObject.moveableObject.Explode();
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        private bool CanKillRockFord(Tile target)
+        {
+            if (target.Down == game.Rockford?.Location)
+            {
+                game.Rockford = null;
+                return true;
+            }
+
+            if (target.Down.StaticObject.moveableObject?.IsRound == true)
+            {
+                if (target.Right.StaticObject.IsEmpty && target.Right.StaticObject.moveableObject == null)
+                {
+                    if (target.Right.Down == game.Rockford?.Location)
+                    {
+                        game.Rockford = null;
+                        return true;
+                    }
+                }
+
+                if (target.Left.StaticObject.IsEmpty && target.Left.StaticObject.moveableObject == null)
+                {
+                    if (target.Left.Down == game.Rockford?.Location)
+                    {
+                        game.Rockford = null;
+                        return true;
+                    }
+                }
+            }
             return false;
         }
 

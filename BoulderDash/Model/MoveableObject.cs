@@ -16,6 +16,8 @@ namespace BoulderDash.Model
         public bool IsWalkable { get; set; }
         public bool IsPushable { get; set; }
         public bool Destroyable { get; set; }
+        public bool Supportive { get; set; }
+        public bool CanExplode { get; set; }
         public char DrawChar { get; set; }
 
         public MoveableObject(Game game)
@@ -31,6 +33,45 @@ namespace BoulderDash.Model
         public virtual bool move()
         {
             return false;
+        }
+
+        public virtual bool Explode()
+        {
+            Tile temp = Location.Left.Up;
+            Tile target = temp;
+            while (target != Location.Right.Down)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    if (target.StaticObject.moveableObject?.Destroyable == true)
+                    {
+                        if (target == game.Rockford?.Location)
+                        {
+                            game.Rockford = null;
+                        }
+                        game.tempList.Remove(target.StaticObject.moveableObject);
+                        target.StaticObject.moveableObject = null;
+                    }
+
+                    if (target.StaticObject.Destroyable)
+                    {
+                        target.StaticObject = new Empty(null);
+                    }
+
+                    if (target != Location.Right.Down)
+                        target = target.Right;
+                }
+
+                if (temp != Location.Down.Left)
+                {
+                    temp = temp.Down;
+                    target = temp;
+                }
+            }
+            game.tempList.Remove(this);
+            Location.StaticObject.moveableObject = null;
+            Location.StaticObject = new Empty(null);
+            return true;
         }
     }
 }

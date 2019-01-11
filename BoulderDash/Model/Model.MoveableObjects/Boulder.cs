@@ -16,6 +16,8 @@ namespace BoulderDash.Model.MoveableObjects
             IsRound = true;
             IsPushable = true;
             Destroyable = true;
+            CanExplode = false;
+            Supportive = false;
         }
 
         public override bool move(int direction)
@@ -49,6 +51,11 @@ namespace BoulderDash.Model.MoveableObjects
                 return true;
             }
 
+            return false;
+        }
+
+        public override bool Explode()
+        {
             return false;
         }
     }

@@ -15,6 +15,13 @@ namespace BoulderDash.Model.MoveableObjects
             IsWalkable = true;
             IsRound = true;
             Destroyable = true;
+            CanExplode = false;
+            Supportive = false;
+        }
+
+        public override bool Explode()
+        {
+            return false;
         }
     }
 }
