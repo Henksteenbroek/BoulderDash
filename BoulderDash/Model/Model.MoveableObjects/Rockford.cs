@@ -16,6 +16,7 @@ namespace BoulderDash.Model.MoveableObjects
             DrawChar = 'R';
             Destroyable = true;
             CanExplode = true;
+            GivesPoints = false;
             Supportive = false;
         }
 
@@ -69,6 +70,9 @@ namespace BoulderDash.Model.MoveableObjects
         {
             if (!IsPushable)
                 game.tempList.Remove(target.StaticObject.moveableObject);
+
+            if (target.StaticObject.moveableObject?.GivesPoints == true)
+                game.AmountOfPoints += 10;
 
             target.StaticObject.moveableObject = this;
             Location.StaticObject.moveableObject = null;

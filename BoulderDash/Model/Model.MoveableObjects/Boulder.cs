@@ -18,6 +18,7 @@ namespace BoulderDash.Model.MoveableObjects
             Destroyable = true;
             CanExplode = false;
             Supportive = false;
+            GivesPoints = false;
         }
 
         public override bool move(int direction)

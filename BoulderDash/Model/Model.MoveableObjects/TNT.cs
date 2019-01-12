@@ -27,6 +27,7 @@ namespace BoulderDash.Model.MoveableObjects
             Destroyable = true;
             Supportive = false;
             CanExplode = true;
+            GivesPoints = false;
             IsDead = false;
             ExplodeTimer = new Thread(AutoExplode);
             ExplodeTimer.Start();

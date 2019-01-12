@@ -9,8 +9,11 @@ namespace BoulderDash.Model
 {
     public abstract class Rollable : MoveableObject
     {
+        private bool hasMoved;
+
         public Rollable(Game game) : base(game)
         {
+            hasMoved = false;
         }
 
         public override bool move(int direction)
@@ -22,15 +25,11 @@ namespace BoulderDash.Model
         {
             Tile target = Location;
             
-            if (CanKillRockFord(target))
-            {
+            if (CanKillRockFord(target, hasMoved))
                 return true;
-            }
 
-            if (FallOnExplosive(target))
-            {
+            if (FallOnExplosive(target, hasMoved))
                 return true;
-            }
 
             //Naar onder vallen (leeg vakje eronder)
             if (target.Down.StaticObject.IsEmpty && target.Down.StaticObject.moveableObject == null)
@@ -50,6 +49,7 @@ namespace BoulderDash.Model
                     {
                         return MoveToLocation(target.Right.Down);
                     }
+                    hasMoved = false;
                     return false;
                 }
 
@@ -62,17 +62,21 @@ namespace BoulderDash.Model
 
                         return MoveToLocation(target.Left.Down);
                     }
+                    hasMoved = false;
                     return false;
                 }
-
+                hasMoved = false;
                 return false;
             }
-
+            hasMoved = false;
             return false;
         }
 
-        private bool FallOnExplosive(Tile target)
+        private bool FallOnExplosive(Tile target, bool hasMoved)
         {
+            if (!hasMoved)
+                return false;
+
             if (target.Down.StaticObject.moveableObject?.CanExplode == true)
             {
                 target.Down.StaticObject.moveableObject.Explode();
@@ -102,8 +106,11 @@ namespace BoulderDash.Model
             return false;
         }
 
-        private bool CanKillRockFord(Tile target)
+        private bool CanKillRockFord(Tile target, bool hasMoved)
         {
+            if (!hasMoved)
+                return false;
+
             if (target.Down == game.Rockford?.Location)
             {
                 target.Down.StaticObject.moveableObject.Explode();
@@ -138,6 +145,7 @@ namespace BoulderDash.Model
             target.StaticObject.moveableObject = this;
             Location.StaticObject.moveableObject = null;
             Location = target;
+            hasMoved = true;
             return true;
         }
     }

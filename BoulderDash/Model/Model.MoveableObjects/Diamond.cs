@@ -17,6 +17,7 @@ namespace BoulderDash.Model.MoveableObjects
             Destroyable = true;
             CanExplode = false;
             Supportive = false;
+            GivesPoints = true;
         }
 
         public override bool Explode()

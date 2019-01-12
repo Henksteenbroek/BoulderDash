@@ -18,6 +18,7 @@ namespace BoulderDash.Model
         public bool Destroyable { get; set; }
         public bool Supportive { get; set; }
         public bool CanExplode { get; set; }
+        public bool GivesPoints { get; set; }
         public char DrawChar { get; set; }
 
         public MoveableObject(Game game)

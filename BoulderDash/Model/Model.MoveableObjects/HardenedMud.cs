@@ -22,6 +22,7 @@ namespace BoulderDash.Model.MoveableObjects
             hasMoved = false;
             Destroyable = true;
             Supportive = true;
+            GivesPoints = false;
         }
 
         public override bool move(int direction)

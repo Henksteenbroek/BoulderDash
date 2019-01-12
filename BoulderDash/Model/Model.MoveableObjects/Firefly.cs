@@ -21,6 +21,7 @@ namespace BoulderDash.Model.MoveableObjects
             CanExplode = true;
             Supportive = false;
             IsDead = false;
+            GivesPoints = false;
         }
 
         public override bool move()
@@ -183,6 +184,7 @@ namespace BoulderDash.Model.MoveableObjects
         public override bool Explode()
         {
             IsDead = true;
+            game.AmountOfPoints += 250;
             return base.Explode();
         }
     }
