@@ -28,9 +28,13 @@ namespace BoulderDash.Model.StaticObjects
         public bool Destroyable { get { return false; } }
         public bool Supportive { get { return false; } }
 
+        public bool IsActive { get; set; }
+        public Tile Location { get; set; }
+
         public Exit(MoveableObject moveableObject)
         {
             this.moveableObject = moveableObject;
+            IsActive = false;
         }
 
         public void move(int direction)

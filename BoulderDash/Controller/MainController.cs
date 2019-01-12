@@ -15,7 +15,9 @@ namespace BoulderDash.Controller
     {
         private int LevelLength = 150;
         private bool GameOver;
+        private bool GameWon;
         private Thread CountDownThread;
+        private bool AllDiamondsCollected;
 
         public Tile[,] tiles { get; set; }
         LevelData levelData;
@@ -33,12 +35,12 @@ namespace BoulderDash.Controller
             StartUp();
 
             GameOver = false;
+            GameWon = false;
 
             CountDownThread = new Thread(CountDown);
             CountDownThread.Start();
 
             outputView.printLevel(game, LevelLength);
-
             StartGame();
         }
 
@@ -50,13 +52,15 @@ namespace BoulderDash.Controller
             }
             while (!GameOver)
             {
-                if (game.Rockford == null)
-                {
-                    GameOver = true;
+                if(CheckDeath())
                     break;
-                }
+
+                CollectedAllDiamonds();
                 game.Rockford.move(inputView.readInput());
                 outputView.printLevel(game, LevelLength);
+
+                if (CheckWin())
+                    break;
 
                 game.moveableObjects.Clear();
                 foreach (var item in game.tempList)
@@ -68,12 +72,55 @@ namespace BoulderDash.Controller
                 {
                     item.move();
                 }
-
                 outputView.printLevel(game, LevelLength);
             }
 
-            outputView.ShowGameOverScreen();
+            GameIsOver();
             ResetGame();
+        }
+
+        private bool CheckDeath()
+        {
+            if (game.Rockford == null)
+            {
+                GameOver = true;
+                return true;
+            }
+
+            return false;
+        }
+
+        private bool CheckWin()
+        {
+            if (game.Rockford.Location == game.Exit.Location)
+            {
+                GameOver = true;
+                GameWon = true;
+                return true;
+            }
+            return false;
+        }
+
+        private void CollectedAllDiamonds()
+        {
+            if (game.tempList.Count == 0)
+                AllDiamondsCollected = true;
+
+            foreach (var item in game.tempList)
+            {
+                if (item.GivesPoints)
+                {
+                    AllDiamondsCollected = false;
+                    break;
+                }
+                else
+                {
+                    AllDiamondsCollected = true;
+                }
+            }
+
+            if (AllDiamondsCollected)
+                game.Exit.IsActive = true;
         }
 
         private void ResetGame()
@@ -94,6 +141,7 @@ namespace BoulderDash.Controller
             CountDownThread = new Thread(CountDown);
             outputView.printLevel(game, LevelLength);
             GameOver = false;
+            GameWon = false;
             CountDownThread.Start();
             StartGame();
         }
@@ -115,6 +163,29 @@ namespace BoulderDash.Controller
             {
             }
             ReadLevel(i);
+        }
+
+        private void GameIsOver()
+        {
+            if (!GameWon)
+            {
+                outputView.ShowGameOverScreen();
+            }
+            else
+            {
+                if (LevelLength <= 0)
+                {
+                    outputView.ShowGameWon(game, false);
+                }
+                else
+                {
+                    for (int i = 0; i < LevelLength; i++)
+                    {
+                        game.AmountOfPoints += 10;
+                    }
+                    outputView.ShowGameWon(game, true);
+                }
+            }
         }
 
         public Tile[,] ReadLevel(int levelNumber)
@@ -163,7 +234,10 @@ namespace BoulderDash.Controller
                             game.moveableObjects.Add(f);
                             break;
                         case 'E':
-                            tiles[y, x] = new Tile(new Exit(null));
+                            Exit ex = new Exit(null);
+                            game.Exit = ex;
+                            tiles[y, x] = new Tile(ex);
+                            game.Exit.Location = tiles[y, x];
                             break;
                         case 'H':
                             HardenedMud h = new HardenedMud(game);

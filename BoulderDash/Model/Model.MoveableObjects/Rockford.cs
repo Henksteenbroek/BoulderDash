@@ -42,6 +42,14 @@ namespace BoulderDash.Model.MoveableObjects
                     return false;
             }
 
+            if (target == game.Exit.Location)
+            {
+                if (game.Exit.IsActive)
+                    finalizeMove(target, false);
+
+
+                return true;
+            }
 
             if (target.StaticObject.moveableObject?.IsPushable == true)
             {

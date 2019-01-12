@@ -36,6 +36,19 @@ namespace BoulderDash.View
             Console.WriteLine(game.Last.StaticObject.DrawChar);
         }
 
+        public void ShowGameWon(Game game, bool DidWin)
+        {
+            if (!DidWin)
+            {
+                Console.WriteLine("Unfortunately you didn't make it in time.... Press a level number to play again");
+            }
+            else
+            {
+                Console.WriteLine("Congratulations, you made it in time. Your final score is " + game.AmountOfPoints);
+                Console.WriteLine("Press a level number to play again");
+            }
+        }
+
         public void ShowGameOverScreen()
         {
             Console.WriteLine("Oh dear, you are dead! Press a level number to play again");
