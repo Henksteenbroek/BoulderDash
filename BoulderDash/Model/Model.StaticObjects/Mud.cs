@@ -8,7 +8,7 @@ namespace BoulderDash.Model.StaticObjects
 {
     public class Mud : StaticObject
     {
-        public char drawChar = '.';
+        public char drawChar = '░';
         public char DrawChar
         {
             get

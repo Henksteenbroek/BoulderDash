@@ -12,7 +12,7 @@ namespace BoulderDash.Model.MoveableObjects
     {
         public Boulder(Game game) : base(game)
         {
-            DrawChar = 'B';
+            DrawChar = 'o';
             IsRound = true;
             IsPushable = true;
             Destroyable = true;

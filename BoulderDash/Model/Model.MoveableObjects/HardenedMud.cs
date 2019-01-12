@@ -12,12 +12,14 @@ namespace BoulderDash.Model.MoveableObjects
     {
         public int HitPoints = 2;
         public int Supporters;
+        public bool hasMoved;
 
         public HardenedMud(Game game) : base(game)
         {
             DrawChar = '#';
             IsWalkable = false;
             CanExplode = false;
+            hasMoved = false;
             Destroyable = true;
             Supportive = true;
         }
@@ -38,30 +40,53 @@ namespace BoulderDash.Model.MoveableObjects
         {
             Tile target = Location.Down;
 
-            if (CanKillRockFord(target))
+            if (CanKillRockFord(target, hasMoved))
+                return true;
+
+            if (FallOnExplosive(target, hasMoved))
                 return true;
 
             if (target.StaticObject.IsEmpty && target.StaticObject.moveableObject == null)
             {
-                if (Canfall())
+                if (Canfall() || hasMoved)
                 {
                     target.StaticObject.moveableObject = this;
                     Location.StaticObject.moveableObject = null;
                     Location = target;
+                    hasMoved = true;
                     return true;
                 }
             }
+
+            if (hasMoved)
+            {
+                game.tempList.Remove(Location.StaticObject.moveableObject);
+                Location.StaticObject = new Mud(null);
+                Location.StaticObject.moveableObject = null;
+                return false;
+            }
+            
             return false;
         }
 
-        private bool CanKillRockFord(Tile target)
+        private bool CanKillRockFord(Tile target, bool hasMoved)
         {
-            if (target == game.Rockford?.Location && Canfall())
+            if (target == game.Rockford?.Location && hasMoved)
             {
-                game.Rockford = null;
+                game.Rockford.Explode();
                 return true;
             }
 
+            return false;
+        }
+
+        private bool FallOnExplosive(Tile target, bool hasMoved)
+        {
+            if(target.StaticObject.moveableObject?.CanExplode == true && hasMoved)
+            {
+                target.StaticObject.moveableObject.Explode();
+                return true;
+            }
             return false;
         }
 

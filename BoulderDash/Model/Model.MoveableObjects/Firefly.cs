@@ -10,20 +10,24 @@ namespace BoulderDash.Model.MoveableObjects
     public class Firefly : MoveableObject
     {
         public int direction;
+        public bool IsDead;
 
         public Firefly(Game game) : base(game)
         {
-            DrawChar = 'F';
+            DrawChar = '§';
             IsWalkable = false;
             direction = 2;
             Destroyable = true;
             CanExplode = true;
             Supportive = false;
+            IsDead = false;
         }
 
         public override bool move()
         {
             Tile target = null;
+            if (IsDead)
+                return false;
 
             direction = Turn(direction);
 
@@ -174,6 +178,12 @@ namespace BoulderDash.Model.MoveableObjects
                 return true;
 
             return false;
+        }
+
+        public override bool Explode()
+        {
+            IsDead = true;
+            return base.Explode();
         }
     }
 }

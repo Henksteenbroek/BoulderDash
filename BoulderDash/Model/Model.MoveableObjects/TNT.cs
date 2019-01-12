@@ -14,6 +14,7 @@ namespace BoulderDash.Model.MoveableObjects
 
         private int timer;
         private bool hasMoved;
+        private bool IsDead;
         private Thread ExplodeTimer;
 
         public TNT(Game game) : base(game)
@@ -26,12 +27,16 @@ namespace BoulderDash.Model.MoveableObjects
             Destroyable = true;
             Supportive = false;
             CanExplode = true;
+            IsDead = false;
             ExplodeTimer = new Thread(AutoExplode);
             ExplodeTimer.Start();
         }
 
         public override bool move()
         {
+            if (IsDead)
+                return false;
+
             if (base.move())
             {
                 hasMoved = true;
@@ -54,6 +59,12 @@ namespace BoulderDash.Model.MoveableObjects
                 Thread.Sleep(1000);
             }
             Explode();
+        }
+
+        public override bool Explode()
+        {
+            IsDead = true;
+            return base.Explode();
         }
     }
 }
