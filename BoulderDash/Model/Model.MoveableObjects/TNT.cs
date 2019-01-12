@@ -20,15 +20,17 @@ namespace BoulderDash.Model.MoveableObjects
         public TNT(Game game) : base(game)
         {
             DrawChar = 'X';
+            timer = 30;
+
             IsWalkable = true;
             IsRound = true;
-            timer = 30;
-            hasMoved = false;
             Destroyable = true;
-            Supportive = false;
             CanExplode = true;
+            hasMoved = false;
+            Supportive = false;
             GivesPoints = false;
             IsDead = false;
+
             ExplodeTimer = new Thread(AutoExplode);
             ExplodeTimer.Start();
         }

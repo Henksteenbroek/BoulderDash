@@ -17,11 +17,11 @@ namespace BoulderDash.Model.MoveableObjects
         public HardenedMud(Game game) : base(game)
         {
             DrawChar = '#';
+            Destroyable = true;
+            Supportive = true;
             IsWalkable = false;
             CanExplode = false;
             hasMoved = false;
-            Destroyable = true;
-            Supportive = true;
             GivesPoints = false;
         }
 
