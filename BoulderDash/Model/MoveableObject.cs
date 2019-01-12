@@ -10,7 +10,7 @@ namespace BoulderDash.Model
 {
     public abstract class MoveableObject
     {
-        public Game game;
+        public Game Game;
         public Tile Location { get; set; }
         public bool IsRound { get; set; }
         public bool IsWalkable { get; set; }
@@ -21,9 +21,9 @@ namespace BoulderDash.Model
         public bool GivesPoints { get; set; }
         public char DrawChar { get; set; }
 
-        public MoveableObject(Game game)
+        public MoveableObject(Game Game)
         {
-            this.game = game;
+            this.Game = Game;
         }
 
         public virtual bool move(int direction)
@@ -46,11 +46,11 @@ namespace BoulderDash.Model
                 {
                     if (target.StaticObject.moveableObject?.Destroyable == true)
                     {
-                        if (target == game.Rockford?.Location)
+                        if (target == Game.Rockford?.Location)
                         {
                             target.StaticObject.moveableObject.Explode();
                         }
-                        game.tempList.Remove(target.StaticObject.moveableObject);
+                        Game.tempList.Remove(target.StaticObject.moveableObject);
                         target.StaticObject.moveableObject = null;
                     }
 
@@ -69,7 +69,7 @@ namespace BoulderDash.Model
                     target = temp;
                 }
             }
-            game.tempList.Remove(this);
+            Game.tempList.Remove(this);
             Location.StaticObject.moveableObject = null;
             Location.StaticObject = new Empty(null);
             return true;

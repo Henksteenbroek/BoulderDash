@@ -11,7 +11,7 @@ namespace BoulderDash.Model.MoveableObjects
     public class Rockford : MoveableObject
     {
 
-        public Rockford(Game game) : base(game)
+        public Rockford(Game Game) : base(Game)
         {
             DrawChar = 'R';
             Destroyable = true;
@@ -42,9 +42,9 @@ namespace BoulderDash.Model.MoveableObjects
                     return false;
             }
 
-            if (target == game.Exit.Location)
+            if (target == Game.Exit.Location)
             {
-                if (game.Exit.IsActive)
+                if (Game.Exit.IsActive)
                     finalizeMove(target, false);
 
 
@@ -77,10 +77,10 @@ namespace BoulderDash.Model.MoveableObjects
         public bool finalizeMove(Tile target, bool IsPushable)
         {
             if (!IsPushable)
-                game.tempList.Remove(target.StaticObject.moveableObject);
+                Game.tempList.Remove(target.StaticObject.moveableObject);
 
             if (target.StaticObject.moveableObject?.GivesPoints == true)
-                game.AmountOfPoints += 10;
+                Game.AmountOfPoints += 10;
 
             target.StaticObject.moveableObject = this;
             Location.StaticObject.moveableObject = null;
@@ -91,7 +91,7 @@ namespace BoulderDash.Model.MoveableObjects
 
         public override bool Explode()
         {
-            game.Rockford = null;
+            Game.Rockford = null;
             return base.Explode();
         }
     }

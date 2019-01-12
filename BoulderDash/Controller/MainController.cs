@@ -20,18 +20,19 @@ namespace BoulderDash.Controller
         private bool AllDiamondsCollected;
 
         public Tile[,] tiles { get; set; }
-        LevelData levelData;
 
-        private OutputView outputView;
-        private InputView inputView;
-        Game game;
+        public Game Game  {get; set; }
+        public InputView InputView { get; set; }
+        public OutputView OutputView { get; set; }
+        public LevelData LevelData { get; set; }
+
 
         public MainController()
         {
-            outputView = new OutputView();
-            inputView = new InputView();
-            levelData = new LevelData();
-            game = new Game();
+            OutputView = new OutputView();
+            InputView = new InputView();
+            LevelData = new LevelData();
+            Game = new Game();
             StartUp();
 
             GameOver = false;
@@ -40,39 +41,39 @@ namespace BoulderDash.Controller
             CountDownThread = new Thread(CountDown);
             CountDownThread.Start();
 
-            outputView.printLevel(game, LevelLength);
+            OutputView.printLevel(Game, LevelLength);
             StartGame();
         }
 
         private void StartGame()
         {
-            foreach (var item in game.moveableObjects)
+            foreach (var item in Game.moveableObjects)
             {
-                game.tempList.Add(item);
+                Game.tempList.Add(item);
             }
             while (!GameOver)
             {
-                if(CheckDeath())
+                if (CheckDeath())
                     break;
 
                 CollectedAllDiamonds();
-                game.Rockford.move(inputView.readInput());
-                outputView.printLevel(game, LevelLength);
+                Game.Rockford.move(InputView.readInput());
+                OutputView.printLevel(Game, LevelLength);
 
                 if (CheckWin())
                     break;
 
-                game.moveableObjects.Clear();
-                foreach (var item in game.tempList)
+                Game.moveableObjects.Clear();
+                foreach (var item in Game.tempList)
                 {
-                    game.moveableObjects.Add(item);
+                    Game.moveableObjects.Add(item);
                 }
 
-                foreach (var item in game.moveableObjects)
+                foreach (var item in Game.moveableObjects)
                 {
                     item.move();
                 }
-                outputView.printLevel(game, LevelLength);
+                OutputView.printLevel(Game, LevelLength);
             }
 
             GameIsOver();
@@ -81,7 +82,7 @@ namespace BoulderDash.Controller
 
         private bool CheckDeath()
         {
-            if (game.Rockford == null)
+            if (Game.Rockford == null)
             {
                 GameOver = true;
                 return true;
@@ -92,7 +93,7 @@ namespace BoulderDash.Controller
 
         private bool CheckWin()
         {
-            if (game.Rockford.Location == game.Exit.Location)
+            if (Game.Rockford.Location == Game.Exit.Location)
             {
                 GameOver = true;
                 GameWon = true;
@@ -103,10 +104,10 @@ namespace BoulderDash.Controller
 
         private void CollectedAllDiamonds()
         {
-            if (game.tempList.Count == 0)
+            if (Game.tempList.Count == 0)
                 AllDiamondsCollected = true;
 
-            foreach (var item in game.tempList)
+            foreach (var item in Game.tempList)
             {
                 if (item.GivesPoints)
                 {
@@ -120,18 +121,18 @@ namespace BoulderDash.Controller
             }
 
             if (AllDiamondsCollected)
-                game.Exit.IsActive = true;
+                Game.Exit.IsActive = true;
         }
 
         private void ResetGame()
         {
-            outputView = new OutputView();
-            inputView = new InputView();
-            levelData = new LevelData();
-            game = new Game();
+            OutputView = new OutputView();
+            InputView = new InputView();
+            LevelData = new LevelData();
+            Game = new Game();
 
             int i;
-            while ((i = inputView.readLevelInput()) == 0)
+            while ((i = InputView.readLevelInput()) == 0)
             {
             }
 
@@ -139,7 +140,7 @@ namespace BoulderDash.Controller
 
             LevelLength = 150;
             CountDownThread = new Thread(CountDown);
-            outputView.printLevel(game, LevelLength);
+            OutputView.printLevel(Game, LevelLength);
             GameOver = false;
             GameWon = false;
             CountDownThread.Start();
@@ -157,9 +158,9 @@ namespace BoulderDash.Controller
 
         private void StartUp()
         {
-            outputView.ShowStartScreen();
+            OutputView.ShowStartScreen();
             int i;
-            while ((i = inputView.readLevelInput()) == 0)
+            while ((i = InputView.readLevelInput()) == 0)
             {
             }
             ReadLevel(i);
@@ -169,29 +170,29 @@ namespace BoulderDash.Controller
         {
             if (!GameWon)
             {
-                outputView.ShowGameOverScreen();
+                OutputView.ShowGameOverScreen();
             }
             else
             {
                 if (LevelLength <= 0)
                 {
-                    outputView.ShowGameWon(game, false);
+                    OutputView.ShowGameWon(Game, false);
                 }
                 else
                 {
                     for (int i = 0; i < LevelLength; i++)
                     {
-                        game.AmountOfPoints += 10;
+                        Game.AmountOfPoints += 10;
                     }
-                    outputView.ShowGameWon(game, true);
+                    OutputView.ShowGameWon(Game, true);
                 }
             }
         }
 
         public Tile[,] ReadLevel(int levelNumber)
         {
-            char[,] chars = levelData.GetLevel(levelNumber);
-            tiles = new Tile[levelData.Level_height, levelData.Level_width];
+            char[,] chars = LevelData.GetLevel(levelNumber);
+            tiles = new Tile[LevelData.Level_height, LevelData.Level_width];
 
             for (int y = 0; y < tiles.GetLength(0); y++)
             {
@@ -200,26 +201,26 @@ namespace BoulderDash.Controller
                     switch (chars[y, x])
                     {
                         case 'R':
-                            Rockford r = new Rockford(game);
-                            game.Rockford = r;
+                            Rockford r = new Rockford(Game);
+                            Game.Rockford = r;
                             tiles[y, x] = new Tile(new Empty(r));
-                            tiles[y, x].StaticObject.moveableObject = game.Rockford;
+                            tiles[y, x].StaticObject.moveableObject = Game.Rockford;
                             tiles[y, x].StaticObject.moveableObject.Location = tiles[y, x];
                             break;
                         case 'M':
                             tiles[y, x] = new Tile(new Mud(null));
                             break;
                         case 'B':
-                            Boulder b = new Boulder(game);
+                            Boulder b = new Boulder(Game);
                             tiles[y, x] = new Tile(new Empty(b));
                             tiles[y, x].StaticObject.moveableObject.Location = tiles[y, x];
-                            game.moveableObjects.Add(b);
+                            Game.moveableObjects.Add(b);
                             break;
                         case 'D':
-                            Diamond d = new Diamond(game);
+                            Diamond d = new Diamond(Game);
                             tiles[y, x] = new Tile(new Empty(d));
                             tiles[y, x].StaticObject.moveableObject.Location = tiles[y, x];
-                            game.moveableObjects.Add(d);
+                            Game.moveableObjects.Add(d);
                             break;
                         case 'W':
                             tiles[y, x] = new Tile(new Wall(null));
@@ -228,28 +229,28 @@ namespace BoulderDash.Controller
                             tiles[y, x] = new Tile(new SteelWall(null));
                             break;
                         case 'F':
-                            Firefly f = new Firefly(game);
+                            Firefly f = new Firefly(Game);
                             tiles[y, x] = new Tile(new Empty(f));
                             tiles[y, x].StaticObject.moveableObject.Location = tiles[y, x];
-                            game.moveableObjects.Add(f);
+                            Game.moveableObjects.Add(f);
                             break;
                         case 'E':
                             Exit ex = new Exit(null);
-                            game.Exit = ex;
+                            Game.Exit = ex;
                             tiles[y, x] = new Tile(ex);
-                            game.Exit.Location = tiles[y, x];
+                            Game.Exit.Location = tiles[y, x];
                             break;
                         case 'H':
-                            HardenedMud h = new HardenedMud(game);
+                            HardenedMud h = new HardenedMud(Game);
                             tiles[y, x] = new Tile(new Empty(h));
                             tiles[y, x].StaticObject.moveableObject.Location = tiles[y, x];
-                            game.moveableObjects.Add(h);
+                            Game.moveableObjects.Add(h);
                             break;
                         case 'T':
-                            TNT e = new TNT(game);
+                            TNT e = new TNT(Game);
                             tiles[y, x] = new Tile(new Empty(e));
                             tiles[y, x].StaticObject.moveableObject.Location = tiles[y, x];
-                            game.moveableObjects.Add(e);
+                            Game.moveableObjects.Add(e);
                             break;
                         case ' ':
                             tiles[y, x] = new Tile(new Empty(null));
@@ -266,8 +267,8 @@ namespace BoulderDash.Controller
 
         public void CreateLinks(Tile[,] tiles)
         {
-            game.First = tiles[0, 0];
-            game.Last = tiles[tiles.GetLength(0) - 1, tiles.GetLength(1) - 1];
+            Game.First = tiles[0, 0];
+            Game.Last = tiles[tiles.GetLength(0) - 1, tiles.GetLength(1) - 1];
 
             for (int y = 0; y < tiles.GetLength(0); y++)
             {

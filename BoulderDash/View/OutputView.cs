@@ -11,15 +11,19 @@ namespace BoulderDash.View
     public class OutputView
     {
 
-        public void printLevel(Game game, int LevelLength)
+        public OutputView()
+        {
+        }
+
+        public void printLevel(Game Game, int LevelLength)
         {
             Console.Clear();
-            Console.WriteLine("Time left: " + LevelLength + " | points: " + game.AmountOfPoints);
+            Console.WriteLine("Time left: " + LevelLength + " | points: " + Game.AmountOfPoints);
 
-            Tile temp1 = game.First;
-            Tile temp2 = game.First;
+            Tile temp1 = Game.First;
+            Tile temp2 = Game.First;
 
-            while (temp1 != game.Last)
+            while (temp1 != Game.Last)
             {
                 if (temp1 != null)
                 {
@@ -33,10 +37,10 @@ namespace BoulderDash.View
                     Console.WriteLine();
                 }
             }
-            Console.WriteLine(game.Last.StaticObject.DrawChar);
+            Console.WriteLine(Game.Last.StaticObject.DrawChar);
         }
 
-        public void ShowGameWon(Game game, bool DidWin)
+        public void ShowGameWon(Game Game, bool DidWin)
         {
             if (!DidWin)
             {
@@ -44,7 +48,7 @@ namespace BoulderDash.View
             }
             else
             {
-                Console.WriteLine("Congratulations, you made it in time. Your final score is " + game.AmountOfPoints);
+                Console.WriteLine("Congratulations, you made it in time. Your final score is " + Game.AmountOfPoints);
                 Console.WriteLine("Press a level number to play again");
             }
         }

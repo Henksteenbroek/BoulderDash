@@ -12,7 +12,7 @@ namespace BoulderDash.Model.MoveableObjects
         public int direction;
         public bool IsDead;
 
-        public Firefly(Game game) : base(game)
+        public Firefly(Game Game) : base(Game)
         {
             DrawChar = '§';
             IsWalkable = false;
@@ -58,7 +58,7 @@ namespace BoulderDash.Model.MoveableObjects
             if (CheckForRockFord())
             {
                 Explode();
-                game.Rockford = null;
+                Game.Rockford = null;
                 return false;
             }
 
@@ -166,16 +166,16 @@ namespace BoulderDash.Model.MoveableObjects
 
         private bool CheckForRockFord()
         {
-            if (Location.Up == game.Rockford?.Location)
+            if (Location.Up == Game.Rockford?.Location)
                 return true;
 
-            if (Location.Left == game.Rockford?.Location)
+            if (Location.Left == Game.Rockford?.Location)
                 return true;
 
-            if (Location.Down == game.Rockford?.Location)
+            if (Location.Down == Game.Rockford?.Location)
                 return true;
 
-            if (Location.Right == game.Rockford?.Location)
+            if (Location.Right == Game.Rockford?.Location)
                 return true;
 
             return false;
@@ -184,7 +184,7 @@ namespace BoulderDash.Model.MoveableObjects
         public override bool Explode()
         {
             IsDead = true;
-            game.AmountOfPoints += 250;
+            Game.AmountOfPoints += 250;
             return base.Explode();
         }
     }

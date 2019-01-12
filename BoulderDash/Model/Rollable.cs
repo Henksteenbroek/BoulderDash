@@ -11,7 +11,7 @@ namespace BoulderDash.Model
     {
         private bool hasMoved;
 
-        public Rollable(Game game) : base(game)
+        public Rollable(Game Game) : base(Game)
         {
             hasMoved = false;
         }
@@ -111,7 +111,7 @@ namespace BoulderDash.Model
             if (!hasMoved)
                 return false;
 
-            if (target.Down == game.Rockford?.Location)
+            if (target.Down == Game.Rockford?.Location)
             {
                 target.Down.StaticObject.moveableObject.Explode();
                 return true;
@@ -121,7 +121,7 @@ namespace BoulderDash.Model
             {
                 if (target.Right.StaticObject.IsEmpty && target.Right.StaticObject.moveableObject == null)
                 {
-                    if (target.Right.Down == game.Rockford?.Location)
+                    if (target.Right.Down == Game.Rockford?.Location)
                     {
                         target.Right.Down.StaticObject.moveableObject.Explode();
                         return true;
@@ -130,7 +130,7 @@ namespace BoulderDash.Model
 
                 if (target.Left.StaticObject.IsEmpty && target.Left.StaticObject.moveableObject == null)
                 {
-                    if (target.Left.Down == game.Rockford?.Location)
+                    if (target.Left.Down == Game.Rockford?.Location)
                     {
                         target.Left.Down.StaticObject.moveableObject.Explode();
                         return true;

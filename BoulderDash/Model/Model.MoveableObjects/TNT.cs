@@ -17,7 +17,7 @@ namespace BoulderDash.Model.MoveableObjects
         private bool IsDead;
         private Thread ExplodeTimer;
 
-        public TNT(Game game) : base(game)
+        public TNT(Game Game) : base(Game)
         {
             DrawChar = 'X';
             timer = 30;

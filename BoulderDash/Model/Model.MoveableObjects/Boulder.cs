@@ -10,7 +10,7 @@ namespace BoulderDash.Model.MoveableObjects
 {
     public class Boulder : Rollable
     {
-        public Boulder(Game game) : base(game)
+        public Boulder(Game Game) : base(Game)
         {
             DrawChar = 'o';
             IsRound = true;

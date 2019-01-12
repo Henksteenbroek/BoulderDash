@@ -9,7 +9,7 @@ namespace BoulderDash.Model.MoveableObjects
 {
     public class Diamond : Rollable
     {
-        public Diamond(Game game) : base(game)
+        public Diamond(Game Game) : base(Game)
         {
             DrawChar = '$';
             IsWalkable = true;

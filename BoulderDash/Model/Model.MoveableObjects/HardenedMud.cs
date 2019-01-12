@@ -14,7 +14,7 @@ namespace BoulderDash.Model.MoveableObjects
         public int Supporters;
         public bool hasMoved;
 
-        public HardenedMud(Game game) : base(game)
+        public HardenedMud(Game Game) : base(Game)
         {
             DrawChar = '#';
             Destroyable = true;
@@ -61,7 +61,7 @@ namespace BoulderDash.Model.MoveableObjects
 
             if (hasMoved)
             {
-                game.tempList.Remove(Location.StaticObject.moveableObject);
+                Game.tempList.Remove(Location.StaticObject.moveableObject);
                 Location.StaticObject = new Mud(null);
                 Location.StaticObject.moveableObject = null;
                 return false;
@@ -72,9 +72,9 @@ namespace BoulderDash.Model.MoveableObjects
 
         private bool CanKillRockFord(Tile target, bool hasMoved)
         {
-            if (target == game.Rockford?.Location && hasMoved)
+            if (target == Game.Rockford?.Location && hasMoved)
             {
-                game.Rockford.Explode();
+                Game.Rockford.Explode();
                 return true;
             }
 
