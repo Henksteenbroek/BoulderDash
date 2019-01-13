@@ -50,7 +50,6 @@ namespace BoulderDash.Model
                         return MoveToLocation(target.Right.Down);
                     }
                     hasMoved = false;
-                    return false;
                 }
 
                 //Naar link vallen
@@ -63,7 +62,6 @@ namespace BoulderDash.Model
                         return MoveToLocation(target.Left.Down);
                     }
                     hasMoved = false;
-                    return false;
                 }
                 hasMoved = false;
                 return false;

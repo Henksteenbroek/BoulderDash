@@ -8,7 +8,7 @@ namespace BoulderDash.Model.StaticObjects
 {
     public class Wall : StaticObject
     {
-        public char drawChar = 'W';
+        public char drawChar = '+';
         public char DrawChar
         {
             get

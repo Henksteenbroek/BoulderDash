@@ -8,7 +8,7 @@ namespace BoulderDash.Model.StaticObjects
 {
     public class SteelWall : StaticObject
     {
-        public char drawChar = 'S';
+        public char drawChar = '█';
         public char DrawChar
         {
             get

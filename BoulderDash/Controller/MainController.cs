@@ -13,13 +13,14 @@ namespace BoulderDash.Controller
 {
     public class MainController
     {
+        public Tile[,] tiles { get; set; }
+
         private int LevelLength = 150;
         private bool GameOver;
         private bool GameWon;
         private Thread CountDownThread;
         private bool AllDiamondsCollected;
 
-        public Tile[,] tiles { get; set; }
 
         public Game Game  {get; set; }
         public InputView InputView { get; set; }

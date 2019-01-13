@@ -15,6 +15,7 @@ namespace BoulderDash.Controller
         public Tile Last { get; set; }
         public Rockford Rockford { get; set; }
         public Exit Exit { get; set; }
+
         public int AmountOfPoints { get; set; }
         public List<MoveableObject> moveableObjects { get; set; }
         public List<MoveableObject> tempList { get; set; }

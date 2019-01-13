@@ -32,8 +32,8 @@
       <FileName>Model\Game.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="Exit" />
       <Property Name="Rockford" />
+      <Property Name="Exit" />
     </ShowAsAssociation>
   </Class>
   <Class Name="BoulderDash.Program">
@@ -44,14 +44,28 @@
     </TypeIdentifier>
   </Class>
   <Class Name="BoulderDash.Model.MoveableObjects.Boulder" Collapsed="true">
-    <Position X="4" Y="4" Width="1.5" />
+    <Position X="4" Y="4.5" Width="1.5" />
+    <InheritanceLine Type="BoulderDash.Model.Rollable" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="8.312" Y="5.25" />
+        <Point X="8.312" Y="4.875" />
+        <Point X="5.5" Y="4.875" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAACAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model\Model.MoveableObjects\Boulder.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BoulderDash.Model.MoveableObjects.Diamond" Collapsed="true">
-    <Position X="4" Y="2.25" Width="1.5" />
+    <Position X="4" Y="6.5" Width="1.5" />
+    <InheritanceLine Type="BoulderDash.Model.Rollable" FixedToPoint="true">
+      <Path>
+        <Point X="8.75" Y="5.941" />
+        <Point X="8.75" Y="6.812" />
+        <Point X="5.5" Y="6.812" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model\Model.MoveableObjects\Diamond.cs</FileName>
@@ -73,6 +87,15 @@
   </Class>
   <Class Name="BoulderDash.Model.MoveableObjects.Rockford" Collapsed="true">
     <Position X="17.5" Y="0.75" Width="1.5" />
+    <InheritanceLine Type="BoulderDash.Model.MoveableObject" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="13.562" Y="4" />
+        <Point X="13.562" Y="1.057" />
+        <Point X="17.376" Y="1.057" />
+        <Point X="17.376" Y="1.062" />
+        <Point X="17.5" Y="1.062" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAACAAAAAAAgAQAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model\Model.MoveableObjects\Rockford.cs</FileName>
@@ -80,6 +103,14 @@
   </Class>
   <Class Name="BoulderDash.Model.MoveableObjects.TNT" Collapsed="true">
     <Position X="4" Y="5.5" Width="1.5" />
+    <InheritanceLine Type="BoulderDash.Model.Rollable" ManuallyRouted="true" FixedFromPoint="true">
+      <Path>
+        <Point X="8" Y="5.688" />
+        <Point X="7" Y="5.688" />
+        <Point X="7" Y="5.846" />
+        <Point X="5.5" Y="5.846" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAQAAAAIAAAAAACAAAABEAgAAAAAAAAAACAAAAAAAAA=</HashCode>
       <FileName>Model\Model.MoveableObjects\TNT.cs</FileName>
@@ -87,6 +118,16 @@
   </Class>
   <Class Name="BoulderDash.Model.StaticObjects.Empty" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="8.75" Y="0.5" Width="1.5" />
+    <AssociationLine Name="moveableObject" Type="BoulderDash.Model.MoveableObject" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="10.25" Y="0.781" />
+        <Point X="13.188" Y="0.781" />
+        <Point X="13.188" Y="4" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.085" Y="2.924" />
+      </MemberNameLabel>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>AABAAAAAAAAACASAAAgBAAAAAAgAAAAAAAAAAAIAAAA=</HashCode>
       <FileName>Model\Model.StaticObjects\Empty.cs</FileName>
@@ -96,7 +137,7 @@
     </ShowAsAssociation>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="BoulderDash.Model.StaticObjects.Exit" BaseTypeListCollapsed="true">
+  <Class Name="BoulderDash.Model.StaticObjects.Exit" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="17.5" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AABAAAAAAAAACASAEAoBAAAAAAgAAAAAAAAAAAIAAAA=</HashCode>
@@ -105,7 +146,17 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="BoulderDash.Model.StaticObjects.Mud" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="8.75" Y="2.5" Width="1.5" />
+    <Position X="8.75" Y="1.75" Width="1.5" />
+    <AssociationLine Name="moveableObject" Type="BoulderDash.Model.MoveableObject" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="10.25" Y="2.031" />
+        <Point X="12.625" Y="2.031" />
+        <Point X="12.625" Y="4" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.085" Y="0.921" />
+      </MemberNameLabel>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>AABAAAAAAAAACASAAAgBAAAAAAgAAAAAAAAAAAIAAAA=</HashCode>
       <FileName>Model\Model.StaticObjects\Mud.cs</FileName>
@@ -116,7 +167,15 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="BoulderDash.Model.StaticObjects.SteelWall" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="8.75" Y="3.5" Width="1.5" />
+    <Position X="8.75" Y="3" Width="1.5" />
+    <AssociationLine Name="moveableObject" Type="BoulderDash.Model.MoveableObject" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="10.25" Y="3.1" />
+        <Point X="10.625" Y="3.1" />
+        <Point X="10.625" Y="4" />
+        <Point X="12.5" Y="4" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>AABAAAAAAAAACASAAAgBAAAAAAgAAAAAAAAAAAIAAAA=</HashCode>
       <FileName>Model\Model.StaticObjects\SteelWall.cs</FileName>
@@ -127,7 +186,17 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="BoulderDash.Model.StaticObjects.Wall" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="8.75" Y="1.5" Width="1.5" />
+    <Position X="8.75" Y="1" Width="1.5" />
+    <AssociationLine Name="moveableObject" Type="BoulderDash.Model.MoveableObject" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="10.25" Y="1.281" />
+        <Point X="12.875" Y="1.281" />
+        <Point X="12.875" Y="4" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.111" Y="1.91" />
+      </MemberNameLabel>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>AABAAAAAAAAACASAAAgBAAAAAAgAAAAAAAAAAAIAAAA=</HashCode>
       <FileName>Model\Model.StaticObjects\Wall.cs</FileName>
@@ -137,15 +206,25 @@
     </ShowAsAssociation>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="BoulderDash.Model.MoveableObject">
-    <Position X="12.5" Y="0.5" Width="1.5" />
+  <Class Name="BoulderDash.Model.MoveableObject" Collapsed="true">
+    <Position X="12.5" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAACISAAQIAAAgIQAgAAAAAAAAAAAIAAAA=</HashCode>
       <FileName>Model\MoveableObject.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BoulderDash.Model.Rollable" Collapsed="true">
-    <Position X="7.5" Y="5.25" Width="1.5" />
+    <Position X="8" Y="5.25" Width="1.5" />
+    <InheritanceLine Type="BoulderDash.Model.MoveableObject" ManuallyRouted="true">
+      <Path>
+        <Point X="13.25" Y="4.562" />
+        <Point X="13.25" Y="5.125" />
+        <Point X="11.75" Y="5.125" />
+        <Point X="11.75" Y="4.915" />
+        <Point X="8.75" Y="4.915" />
+        <Point X="8.75" Y="5.25" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAIAAAAAAACAAAAhAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
       <FileName>Model\Rollable.cs</FileName>
@@ -177,6 +256,16 @@
   </Class>
   <Interface Name="BoulderDash.Model.StaticObject">
     <Position X="15" Y="1.5" Width="1.5" />
+    <AssociationLine Name="moveableObject" Type="BoulderDash.Model.MoveableObject" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="15" Y="2.281" />
+        <Point X="13.875" Y="2.281" />
+        <Point X="13.875" Y="4" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.005" Y="1.821" />
+      </MemberNameLabel>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>AABAAAAAAAAACAQAAAABAAAAAAgAAAAAAAAAAAIAAAA=</HashCode>
       <FileName>Model\StaticObject.cs</FileName>
